@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import EventInfo from "./EventInfo";
 
 const ApiCall = () => {
+
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         axios({
@@ -15,14 +18,15 @@ const ApiCall = () => {
             }
         })
             .then((res) => {
-                console.log(res)
+                // console.log(res.data._embedded.events);
+                setData(res.data._embedded.events);
             })
 
     }, [])
 
     return (
         <div>
-
+            <EventInfo eventArray = { data } />
         </div>
     )
 }
