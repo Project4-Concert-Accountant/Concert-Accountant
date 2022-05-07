@@ -7,6 +7,16 @@ const ApiCall = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+
+        
+
+        // const todatsDate = new Date();
+        // const year = todatsDate.getFullYear();
+        // const month = todatsDate.getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+        // const date = todatsDate.getDay().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+        // const today = `${year}-${month}-${date}`;
+        // console.log(today);
+
         axios({
             url: "https://app.ticketmaster.com/discovery/v2/events.json?",
             params: {
@@ -14,7 +24,8 @@ const ApiCall = () => {
                 format: "json",
                 size: 10,
                 city: "Toronto",
-                segmentName: "music"
+                segmentName: "music",
+                // onsaleOnStartDate : today
             }
         })
             .then((res) => {
