@@ -5,39 +5,51 @@ import EventInfo from "./EventInfo";
 const ApiCall = () => {
 
     const [data, setData] = useState([]);
+    const [paidArray, setPaidArray] = useState([]);
+    // use the free array for broke mode later
+    const [freeArray, setFreeArray] = useState([]);
 
     useEffect(() => {
-
-        
-
-        // const todatsDate = new Date();
-        // const year = todatsDate.getFullYear();
-        // const month = todatsDate.getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
-        // const date = todatsDate.getDay().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
-        // const today = `${year}-${month}-${date}`;
-        // console.log(today);
 
         axios({
             url: "https://app.ticketmaster.com/discovery/v2/events.json?",
             params: {
                 apikey: "dAuzWaR4q5pH90ZcC6CpJPHDjH7Gjzz8",
                 format: "json",
-                size: 10,
+                size: 20,
+                sort: 'date,asc',
                 city: "Toronto",
                 segmentName: "music",
-                // onsaleOnStartDate : today
             }
         })
             .then((res) => {
-                // console.log(res.data._embedded.events);
+                // the useful data from api
                 setData(res.data._embedded.events);
             })
 
+                // creating a copy so we dont mutate the original data
+                const copyOfData = [...data];
+                const primaryPaidArray = [];
+                const primaryFreeArray = [];
+
+                copyOfData.forEach(eachItem => {
+                    if(eachItem.priceRanges && eachItem.priceRanges[0].min > 0){
+                        primaryPaidArray.push(eachItem);
+                    }
+                    else {
+                        primaryFreeArray.push(eachItem);
+                    }
+                })
+
+                setPaidArray(primaryPaidArray);
+                setFreeArray(primaryFreeArray);
+
+                console.log(freeArray);
     }, [])
 
     return (
         <div>
-            <EventInfo eventArray = { data } />
+            <EventInfo eventArray = { paidArray } />
         </div>
     )
 }
