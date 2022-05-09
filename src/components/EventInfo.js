@@ -11,7 +11,8 @@ const EventInfo = ({ eventArray } ) => {
                         <div key={singleEvent.id} className= 'redBorder'>
                             <p>{singleEvent.name}</p>
                             <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
-                            <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p>
+                            {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
+                            <p>{singleEvent.priceRanges[0].min}</p>
                         </div>
                     )
                 })
