@@ -44,3 +44,17 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
     transform: rotate(360deg);
   }
 }
+
+.redBorder {
+  border: 2px solid red;
+  border-radius: 5px;
+  width: 50%;
+  
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
