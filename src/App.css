@@ -58,3 +58,14 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   justify-content: center;
   align-items: center;
 }
+
+img {
+  width: 100%;
+  display: block;
+  
+}
+
+.imgContainer {
+  max-width: 400px;
+  margin: 0 auto;
+}

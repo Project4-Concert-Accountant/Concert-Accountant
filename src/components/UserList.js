@@ -1,6 +1,7 @@
 import firebase from "../firebase"
-import { getDatabase, ref, OnValue, onValue, push } from "firebase/database"
+import { getDatabase, ref, onValue } from "firebase/database"
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const UserList = () => {
     //Get data from Firebase through onValue request
@@ -28,6 +29,7 @@ const UserList = () => {
     }, [])
 
     return (
+       <>
         <ul>
             {
                 userListArray.map((list) => {
@@ -35,7 +37,7 @@ const UserList = () => {
                         <li key={list.id}>
                             <p>{list.data.name}</p>
                             <p>{list.data.budget}</p>
-                            <button>+</button>
+                            <Link to={`/lists/${list.id}`}>+++</Link>
                         </li>
 
                     )
@@ -43,6 +45,8 @@ const UserList = () => {
                 })
             }
         </ul>
+        {/* <SearchPage/> */}
+       </>
     )
 }
 
