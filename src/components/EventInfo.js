@@ -1,6 +1,16 @@
 import React from 'react'
+import firebase from '../firebase'
+import { getDatabase, ref, push } from 'firebase/database'
 
-const EventInfo = ({ eventArray } ) => {
+const EventInfo = ({ eventArray, listKey } ) => {
+
+    const database = getDatabase(firebase);
+    const dbRef = ref(`${database}/${listKey}`);
+
+    const addEvent = (eventItem) => {
+        push(dbRef, eventItem );
+    }
+
     return (
         <div className='container'>
             {
@@ -13,6 +23,10 @@ const EventInfo = ({ eventArray } ) => {
                             <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
                             {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
                             <p>{singleEvent.priceRanges[0].min}</p>
+                            <div className="imgContainer">
+                                <img src={singleEvent.images[2].url} alt={`a poster for ${singleEvent.name}`} />
+                            </div>
+                            <button onClick={ () => {addEvent(singleEvent)}}>Add this show</button>
                         </div>
                     )
                 })

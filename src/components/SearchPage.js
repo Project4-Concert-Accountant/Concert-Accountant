@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
+import { useParams } from "react-router-dom";
 
 const SearchPage = () => {
     const [userSearch, setUserSearch] = useState("")
@@ -9,6 +10,8 @@ const SearchPage = () => {
     const [paidArray, setPaidArray] = useState([]);
     // use the free array for broke mode later
     const [freeArray, setFreeArray] = useState([]);
+
+    const { listID } = useParams();
 
     const apiCall = (event) => {
         event.preventDefault()
@@ -20,8 +23,10 @@ const SearchPage = () => {
                 format: "json",
                 size: 20,
                 sort: 'date,asc',
-                city: "Toronto",
-                segmentName: userSearch,
+                // the city should be user input
+                city: userSearch,
+                segmentName: 'Music',
+                // keyword: userSearch,
             }
         })
             .then((res) => {
@@ -61,7 +66,7 @@ const SearchPage = () => {
     return (
         <div>
             <form onSubmit={apiCall}>
-                <input onChange={handleUserSearch} type="text" id="search" name="search" />
+                <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>
             </form>
             {paidArray.length === 0 ? null : <EventInfo eventArray = { paidArray } />}
