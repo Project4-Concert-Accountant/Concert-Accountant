@@ -29,8 +29,17 @@ const SearchPage = () => {
                 const apiData = res.data._embedded.events
                 setData(apiData);
             })
+    }
 
-                // creating a copy so we dont mutate the original data
+    const handleUserSearch = (event) => {
+        const searchQuery = event.target.value;
+        setUserSearch(searchQuery)
+        console.log(userSearch)
+    }
+
+
+    useEffect(()=>{
+               // creating a copy so we dont mutate the original data
                 const copyOfData = [...data];
                 const primaryPaidArray = [];
                 const primaryFreeArray = [];
@@ -45,16 +54,10 @@ const SearchPage = () => {
                 })
 
                 setPaidArray(primaryPaidArray);
+                console.log(primaryPaidArray)
                 setFreeArray(primaryFreeArray);
-                console.log(data)
-    }
-
-    const handleUserSearch = (event) => {
-        const searchQuery = event.target.value;
-        setUserSearch(searchQuery)
-        console.log(userSearch)
-    }
-
+        }, [data])
+        
     return (
         <div>
             <form onSubmit={apiCall}>
