@@ -2,6 +2,8 @@ import './App.css';
 import ListBudgetForm from './components/ListBudgetForm';
 import { Route, Routes } from 'react-router-dom';
 import SearchPage from './components/SearchPage';
+import UserList from './components/UserList';
+
 function App() {
   
 
@@ -14,6 +16,8 @@ function App() {
       <Routes>
         <Route path='/:listID' element={<SearchPage />}/>
       </Routes>
+      <ApiCall />
+      <UserList />
     </div>
   );
 }

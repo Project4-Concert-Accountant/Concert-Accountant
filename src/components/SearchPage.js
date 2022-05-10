@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
+import UserList from "./UserList";
 
 const SearchPage = () => {
     const [userSearch, setUserSearch] = useState("")
@@ -49,14 +50,14 @@ const SearchPage = () => {
                 const primaryPaidArray = [];
                 const primaryFreeArray = [];
 
-                copyOfData.forEach(eachItem => {
-                    if(eachItem.priceRanges && eachItem.priceRanges[0].min > 0){
-                        primaryPaidArray.push(eachItem);
-                    }
-                    else {
-                        primaryFreeArray.push(eachItem);
-                    }
-                })
+        copyOfData.forEach(eachItem => {
+            if (eachItem.priceRanges && eachItem.priceRanges[0].min > 0) {
+                primaryPaidArray.push(eachItem);
+            }
+            else {
+                primaryFreeArray.push(eachItem);
+            }
+        })
 
                 setPaidArray(primaryPaidArray);
                 console.log(primaryPaidArray)
