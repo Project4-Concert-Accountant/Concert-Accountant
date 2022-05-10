@@ -16,7 +16,6 @@ function App() {
       <Routes>
         <Route path='/:listID' element={<SearchPage />}/>
       </Routes>
-      <ApiCall />
       <UserList />
     </div>
   );

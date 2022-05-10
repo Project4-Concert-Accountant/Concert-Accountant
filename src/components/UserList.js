@@ -1,5 +1,5 @@
 import firebase from "../firebase"
-import { getDatabase, ref, OnValue, onValue, push } from "firebase/database"
+import { getDatabase, ref, onValue, push } from "firebase/database"
 import { useEffect, useState } from "react";
 
 const UserList = () => {

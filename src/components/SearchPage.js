@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
-import UserList from "./UserList";
+// import UserList from "./UserList";
 
 const SearchPage = () => {
     const [userSearch, setUserSearch] = useState("")
