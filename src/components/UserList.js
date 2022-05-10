@@ -7,8 +7,8 @@ const UserList = () => {
     //Display data (name and budget) 
     //add button to add concerts
 
-    //FirebaseList refers to the user list created on the Firebase 
-    const [firebaseList, setFirebaseList] = useState([])
+
+
     const [userListArray, setUserListArray] = useState([])
 
 
@@ -17,11 +17,11 @@ const UserList = () => {
 
     useEffect(() => {
         onValue(dbRef, (response) => {
-            const newName = response.val()
+            const firebaseList = response.val()
             const tempArray = []
 
-            for (const key in newName) {
-                tempArray.push({ id: key, data: newName[key] })
+            for (const key in firebaseList) {
+                tempArray.push({ id: key, data: firebaseList[key] })
             }
             setUserListArray(tempArray)
         })
@@ -35,7 +35,9 @@ const UserList = () => {
                         <li key={list.id}>
                             <p>{list.data.name}</p>
                             <p>{list.data.budget}</p>
+                            <button>+</button>
                         </li>
+
                     )
 
                 })
