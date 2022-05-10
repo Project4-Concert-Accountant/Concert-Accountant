@@ -70,7 +70,7 @@ const SearchPage = () => {
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>
             </form>
-            {paidArray.length === 0 ? null : <EventInfo eventArray = { paidArray } />}
+            <EventInfo eventArray={paidArray}/>
         </div>
     )
 }

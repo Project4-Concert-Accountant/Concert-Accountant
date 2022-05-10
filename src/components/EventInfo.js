@@ -1,11 +1,13 @@
 import React from 'react'
 import firebase from '../firebase'
 import { getDatabase, ref, push } from 'firebase/database'
+import { useParams } from 'react-router-dom'
 
-const EventInfo = ({ eventArray, listKey } ) => {
+const EventInfo = ({ eventArray } ) => {
 
+    const {listID} = useParams();
     const database = getDatabase(firebase);
-    const dbRef = ref(`${database}/${listKey}`);
+    const dbRef = ref(`${database}/${listID}`);
 
     const addEvent = (eventItem) => {
         push(dbRef, eventItem );

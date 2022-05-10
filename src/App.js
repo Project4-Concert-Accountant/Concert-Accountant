@@ -13,10 +13,10 @@ function App() {
     <div className="App">
       <h1>Here is my Api call</h1>
       <ListBudgetForm />
+      <UserList /> 
       <Routes>
-        <Route path='/:listID' element={<SearchPage />}/>
+        <Route path='/lists/:listID' element={<SearchPage />}/>
       </Routes>
-      <UserList />
     </div>
   );
 }
