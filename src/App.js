@@ -3,6 +3,8 @@ import ListBudgetForm from './components/ListBudgetForm';
 import { Route, Routes } from 'react-router-dom';
 import SearchPage from './components/SearchPage';
 import UserList from './components/UserList';
+import Homepage from './components/Homepage';
+import EventPage from './components/EventPage';
 
 function App() {
   
@@ -15,6 +17,7 @@ function App() {
       <ListBudgetForm />
       <UserList /> 
       <Routes>
+        <Route  path='/' element={<Homepage/>}/>
         <Route path='/lists/:listID' element={<SearchPage />}/>
       </Routes>
     </div>

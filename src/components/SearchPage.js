@@ -10,7 +10,7 @@ const SearchPage = () => {
     const [data, setData] = useState([]);
     const [paidArray, setPaidArray] = useState([]);
     // use the free array for broke mode later
-    const [freeArray, setFreeArray] = useState([]);
+    // const [freeArray, setFreeArray] = useState([]);
 
     const { listID } = useParams();
 
@@ -48,31 +48,32 @@ const SearchPage = () => {
                // creating a copy so we dont mutate the original data
                 const copyOfData = [...data];
                 const primaryPaidArray = [];
-                const primaryFreeArray = [];
+                // const primaryFreeArray = [];
 
         copyOfData.forEach(eachItem => {
             if (eachItem.priceRanges && eachItem.priceRanges[0].min > 0) {
                 primaryPaidArray.push(eachItem);
             }
-            else {
-                primaryFreeArray.push(eachItem);
-            }
+            // else {
+            //     primaryFreeArray.push(eachItem);
+            // }
         })
 
                 setPaidArray(primaryPaidArray);
                 console.log(primaryPaidArray)
-                setFreeArray(primaryFreeArray);
+                // setFreeArray(primaryFreeArray);
         }, [data])
         
     return (
         <div>
+            <h2>{listID}</h2>
             <form onSubmit={apiCall}>
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>
             </form>
-            <EventInfo eventArray={paidArray}/>
+            {paidArray.length === 0 ? null : <EventInfo eventArray={paidArray} listKey ={listID} />}
         </div>
     )
 }
 
-export default SearchPage
+export default SearchPage;
