@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
+import UserList from "./UserList";
 
 const ApiCall = () => {
 
@@ -27,29 +28,30 @@ const ApiCall = () => {
                 setData(res.data._embedded.events);
             })
 
-                // creating a copy so we dont mutate the original data
-                const copyOfData = [...data];
-                const primaryPaidArray = [];
-                const primaryFreeArray = [];
+        // creating a copy so we dont mutate the original data
+        const copyOfData = [...data];
+        const primaryPaidArray = [];
+        const primaryFreeArray = [];
 
-                copyOfData.forEach(eachItem => {
-                    if(eachItem.priceRanges && eachItem.priceRanges[0].min > 0){
-                        primaryPaidArray.push(eachItem);
-                    }
-                    else {
-                        primaryFreeArray.push(eachItem);
-                    }
-                })
+        copyOfData.forEach(eachItem => {
+            if (eachItem.priceRanges && eachItem.priceRanges[0].min > 0) {
+                primaryPaidArray.push(eachItem);
+            }
+            else {
+                primaryFreeArray.push(eachItem);
+            }
+        })
 
-                setPaidArray(primaryPaidArray);
-                setFreeArray(primaryFreeArray);
+        setPaidArray(primaryPaidArray);
+        setFreeArray(primaryFreeArray);
 
-                console.log(freeArray);
+        console.log(freeArray);
     }, [])
 
     return (
         <div>
-            <EventInfo eventArray = { paidArray } />
+            {/* <EventInfo eventArray={paidArray} /> */}
+
         </div>
     )
 }
