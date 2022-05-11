@@ -20,26 +20,7 @@ const SearchPage = () => {
     //create state to hold ticket prices from firebase object
     const [ticketPrices, setTicketPrices] = useState([])
 
-    //#REGION firebase stuff
-    //getting list name and budget object from firebase
-    const database = getDatabase(firebase);
-    const dbRef = ref(database, `${listID}`);
-    get(dbRef).then((snapshot) => {
-        const tempObject = snapshot.val()
-        const ticketArray = []
-        setListBudget(tempObject.budget);
-        delete tempObject.budget
-        delete tempObject.name
-        console.log(tempObject);
-        // for (const item in tempObject) {
-        //     console.log("dbItem", item)
-        //     if (item.priceRanges) {
-        //         ticketArray.push(item);
-        //     }
-        // } // for-in END
-        console.log("this is prices", ticketArray);
-    })
-    //#endregion
+   
 
     //
 
@@ -93,10 +74,35 @@ const SearchPage = () => {
         
     }
 
-    
+    useEffect(() => {
+             //#REGION firebase stuff
+    //getting list name and budget object from firebase
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `${listID}`);
+
+    const ticketArray = [];
+    get(dbRef).then((snapshot) => {
+        const tempObject = snapshot.val();
+        setListBudget(tempObject.budget);
+        delete tempObject.budget
+        delete tempObject.name
+
+        for (const item in tempObject) {
+            ticketArray.push(item);
+            // console.log("dbItem", item)
+            // if (item.priceRanges) {
+            // }
+        } // for-in END
+    })
+    console.log("this is prices", ticketArray);
+    //#endregion
+    }, [])
 
 
     useEffect(()=>{
+
+   
+
                // creating a copy so we dont mutate the original data
                 
                const copyOfData = [...data];
@@ -127,6 +133,7 @@ const SearchPage = () => {
             {paidArray.length === 0 ? null : <EventInfo eventArray={paidArray} listKey ={listID} />}
         </div>
     )
+  
 }
 
 export default SearchPage;
