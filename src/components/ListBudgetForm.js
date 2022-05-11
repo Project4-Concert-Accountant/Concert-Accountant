@@ -26,6 +26,8 @@ const ListBudgetForm = () => {
                     (e) => {
                         e.preventDefault()
                         push(dbRef, listName);
+                        //REMOVE LATER.
+                        alert("added to firebase");
 
                     }
                 }>

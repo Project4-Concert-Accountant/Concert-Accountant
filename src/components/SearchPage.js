@@ -2,17 +2,52 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
+import firebase from "../firebase";
+import { getDatabase, ref, get } from "firebase/database"
 // import UserList from "./UserList";
 
 const SearchPage = () => {
+    const { listID } = useParams();
     const [userSearch, setUserSearch] = useState("")
-
     const [data, setData] = useState([]);
     const [paidArray, setPaidArray] = useState([]);
+    
     // use the free array for broke mode later
     // const [freeArray, setFreeArray] = useState([]);
 
-    const { listID } = useParams();
+    //creating state to store budget from firebase object
+    const [listBudget, setListBudget] = useState(0)
+    //create state to hold ticket prices from firebase object
+    const [ticketPrices, setTicketPrices] = useState([])
+
+    //#REGION firebase stuff
+    //getting list name and budget object from firebase
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `${listID}`);
+    get(dbRef).then((snapshot) => {
+        const tempObject = snapshot.val()
+        const ticketArray = []
+        setListBudget(tempObject.budget);
+        delete tempObject.budget
+        delete tempObject.name
+        console.log(tempObject);
+        // for (const item in tempObject) {
+        //     console.log("dbItem", item)
+        //     if (item.priceRanges) {
+        //         ticketArray.push(item);
+        //     }
+        // } // for-in END
+        console.log("this is prices", ticketArray);
+    })
+    //#endregion
+
+    //
+
+    const budgetCheck = (listBudget) => {
+
+
+    }
+
 
     const apiCall = (event) => {
         event.preventDefault()
@@ -33,20 +68,39 @@ const SearchPage = () => {
             .then((res) => {
                 // the useful data from api
                 const apiData = res.data._embedded.events
-                setData(apiData);
+                // take only the data we want from apiData
+                const destructuredApiData = []
+                apiData.map((object) => {
+                    //for each object, deconstruct the following
+                    const {id, name, dates, priceRanges, images} = object
+                    const newObject = {id, name, dates, priceRanges, images}
+
+                    return (
+                        destructuredApiData.push(newObject)
+                        
+                    ) // return END
+
+                })// map END
+                console.log(destructuredApiData);
+
+                setData(destructuredApiData);
             })
     }
 
     const handleUserSearch = (event) => {
         const searchQuery = event.target.value;
-        setUserSearch(searchQuery)
-        console.log(userSearch)
+        setUserSearch(searchQuery)     
+        
     }
+
+    
 
 
     useEffect(()=>{
                // creating a copy so we dont mutate the original data
-                const copyOfData = [...data];
+                
+               const copyOfData = [...data];
+                
                 const primaryPaidArray = [];
                 // const primaryFreeArray = [];
 
@@ -60,7 +114,6 @@ const SearchPage = () => {
         })
 
                 setPaidArray(primaryPaidArray);
-                console.log(primaryPaidArray)
                 // setFreeArray(primaryFreeArray);
         }, [data])
         

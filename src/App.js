@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import SearchPage from './components/SearchPage';
 import UserList from './components/UserList';
 import Homepage from './components/Homepage';
-import EventPage from './components/EventPage';
 
 function App() {
   
