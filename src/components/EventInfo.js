@@ -12,6 +12,8 @@ const EventInfo = ({ eventArray, listKey }) => {
         push(dbRef, eventItem);
     }
 
+
+
     return (
         <div className='container'>
             {
@@ -21,12 +23,13 @@ const EventInfo = ({ eventArray, listKey }) => {
                         return (
                             <div key={singleEvent.id} className='redBorder'>
                                 <p>{singleEvent.name}</p>
-                                <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
-                                {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
-                                <p>{singleEvent.priceRanges[0].min}</p>
                                 <div className="imgContainer">
                                     <img src={singleEvent.images[2].url} alt={`a poster for ${singleEvent.name}`} />
                                 </div>
+                                {/* {props.children} */}
+                                <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
+                                {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
+                                <p>{singleEvent.priceRanges[0].min}</p>
                                 <button onClick={() => { addEvent(singleEvent) }}>Add this show</button>
                             </div>
                         )

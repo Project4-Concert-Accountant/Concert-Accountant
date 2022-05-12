@@ -2,16 +2,15 @@ import firebase from "../firebase"
 import { getDatabase, ref, onValue, remove } from "firebase/database"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EventInfo from "./EventInfo";
 
 const UserList = () => {
     //Get data from Firebase through onValue request
     //Display data (name and budget) 
     //add button to add concerts
 
-
-
     const [userListArray, setUserListArray] = useState([])
-
+    const [showList, setShowList] = useState([])
 
     const database = getDatabase(firebase);
     const dbRef = ref(database);
@@ -47,20 +46,26 @@ const UserList = () => {
         //splicing to get rid off the empty string from firebase
         finalShowList.splice(0, 1)
 
+        setShowList(finalShowList)
+
     }, [userListArray])
-
-
 
     return (
         <>
             <ul>
+                {/* Create css class to resize objects for readable list concert */}
                 {
                     userListArray.map((list) => {
                         return (
                             <li key={list.id}>
                                 <p>{list.data.name}</p>
                                 <p>{list.data.budget}</p>
-                                {/* <p>{list.data.concert}</p> */}
+                                <EventInfo eventArray={showList} />
+                                {/* <ul>{showList.map((item) => {
+                                    return (
+                                        <li>{item.name}</li>
+                                    )
+                                })}</ul> */}
                                 <Link to={`/lists/${list.id}`}>+++</Link>
                             </li>
 
