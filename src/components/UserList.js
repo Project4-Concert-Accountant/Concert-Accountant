@@ -3,6 +3,7 @@ import { getDatabase, ref, onValue, remove } from "firebase/database"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EventInfo from "./EventInfo";
+import SearchPage from "./SearchPage";
 
 const UserList = () => {
     //Get data from Firebase through onValue request
@@ -68,14 +69,11 @@ const UserList = () => {
                                 })}</ul> */}
                                 <Link to={`/lists/${list.id}`}>+++</Link>
                             </li>
-
                         )
-
                     })
                 }
             </ul>
             {/* {console.log("Hello")} */}
-
         </>
     )
 }

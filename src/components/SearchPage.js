@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
 import firebase from "../firebase";
-import { getDatabase, ref, get } from "firebase/database"
-// import UserList from "./UserList";
+import { getDatabase, ref, get, onValue } from "firebase/database"
+import UserList from "./UserList";
+
 
 const SearchPage = () => {
     const { listID } = useParams();
     const [userSearch, setUserSearch] = useState("")
     const [data, setData] = useState([]);
     const [paidArray, setPaidArray] = useState([]);
+    const [userListArray, setUserListArray] = useState([])
+    const [showList, setShowList] = useState([])
     
     // use the free array for broke mode later
     // const [freeArray, setFreeArray] = useState([]);
@@ -18,17 +21,29 @@ const SearchPage = () => {
     //creating state to store budget from firebase object
     const [listBudget, setListBudget] = useState(0)
     //create state to hold ticket prices from firebase object
-    const [ticketPrices, setTicketPrices] = useState([])
+    const [ticketTotal, setTicketTotal] = useState([])
 
    
 
     //
 
-    const budgetCheck = (listBudget) => {
-
-
+    const budgetCheck = () => {
+        const copyOfShowList = [...showList]
+        let ticketPrice = 0
+        copyOfShowList.forEach(ticket => {
+            setTicketTotal(ticketPrice + parseFloat(ticket.priceRanges[0].min))
+            
+        })
     }
+    console.log(budgetCheck())
 
+    useEffect(() => {
+        budgetCheck()
+        // console.log("hello")
+        // const tempVariable = budgetCheck()
+        // setTicketTotal(tempVariable)
+        // console.log(ticketTotal, "hi esther")
+    },[])
 
     const apiCall = (event) => {
         event.preventDefault()
@@ -122,10 +137,47 @@ const SearchPage = () => {
                 setPaidArray(primaryPaidArray);
                 // setFreeArray(primaryFreeArray);
         }, [data])
+
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+
+    useEffect(() => {
+        onValue(dbRef, (response) => {
+            const firebaseList = response.val()
+            const tempArray = []
+
+            for (const key in firebaseList) {
+                tempArray.push({ id: key, data: firebaseList[key] })
+            }
+            setUserListArray(tempArray)
+        })
+    }, [])
+
+        useEffect(() => {
+
+            // creating primary list to get the concert data back from the firebase
+            const primaryShowList = []
+            // final list was created to separate the objects into each index in the array
+            const finalShowList = []
+            const copyUserListArray = [...userListArray]
+            copyUserListArray.forEach((list) => {
+                primaryShowList.push(list.data.concert)
+    
+            })
+            for (let key in primaryShowList[0]) {
+                finalShowList.push(primaryShowList[0][key])
+            }
+    
+            //splicing to get rid off the empty string from firebase
+            finalShowList.splice(0, 1)
+    
+            setShowList(finalShowList)
+    
+        }, [userListArray])
+        
         
     return (
         <div>
-            <h2>{listID}</h2>
             <form onSubmit={apiCall}>
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>
