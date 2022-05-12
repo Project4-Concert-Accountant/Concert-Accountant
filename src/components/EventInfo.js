@@ -2,7 +2,7 @@ import React from 'react'
 import firebase from '../firebase'
 import { getDatabase, ref, push } from 'firebase/database'
 
-const EventInfo = ({ eventArray, listKey }) => {
+const EventInfo = ({ eventArray, listKey, updatePrice }) => {
 
 
     const database = getDatabase(firebase);
@@ -30,7 +30,7 @@ const EventInfo = ({ eventArray, listKey }) => {
                                 <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
                                 {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
                                 <p>{singleEvent.priceRanges[0].min}</p>
-                                <button onClick={() => { addEvent(singleEvent) }}>Add this show</button>
+                                <button onClick={() => { addEvent(singleEvent); updatePrice(singleEvent.priceRanges[0].min); }}>Add this show</button>
                             </div>
                         )
                     })

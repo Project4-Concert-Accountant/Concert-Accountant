@@ -21,7 +21,7 @@ const SearchPage = () => {
     //creating state to store budget from firebase object
     const [listBudget, setListBudget] = useState(0)
     //create state to hold ticket prices from firebase object
-    const [ticketTotal, setTicketTotal] = useState([])
+    const [ticketTotal, setTicketTotal] = useState(0)
 
    
 
@@ -31,19 +31,28 @@ const SearchPage = () => {
         const copyOfShowList = [...showList]
         let ticketPrice = 0
         copyOfShowList.forEach(ticket => {
-            setTicketTotal(ticketPrice + parseFloat(ticket.priceRanges[0].min))
+            ticketPrice = ticketPrice + parseFloat(ticket.priceRanges[0].min)
             
         })
+        return (
+            ticketPrice
+        )
     }
     console.log(budgetCheck())
 
-    useEffect(() => {
-        budgetCheck()
-        // console.log("hello")
-        // const tempVariable = budgetCheck()
-        // setTicketTotal(tempVariable)
-        // console.log(ticketTotal, "hi esther")
-    },[])
+    const updatePrice = (currentTicketPrice) => {
+        const tempVariable = budgetCheck() + currentTicketPrice;
+        setTicketTotal(tempVariable)
+    }
+
+    // consider putting this on click event
+    // useEffect(() => {
+        
+    //     console.log("hello")
+    //     const tempVariable = budgetCheck();
+    //     setTicketTotal(tempVariable)
+    //     console.log(tempVariable, "his esther")
+    // },)
 
     const apiCall = (event) => {
         event.preventDefault()
@@ -182,7 +191,7 @@ const SearchPage = () => {
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>
             </form>
-            {paidArray.length === 0 ? null : <EventInfo eventArray={paidArray} listKey ={listID} />}
+            {paidArray.length === 0 ? null : <EventInfo eventArray={paidArray} listKey ={listID} updatePrice = {updatePrice} />}
         </div>
     )
   
