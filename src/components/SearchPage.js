@@ -23,10 +23,7 @@ const SearchPage = () => {
     //create state to hold ticket prices from firebase object
     const [ticketTotal, setTicketTotal] = useState(0)
 
-   
-
-    //
-
+    // get ticket prices from firebase and sum them up
     const budgetCheck = () => {
         const copyOfShowList = [...showList]
         let ticketPrice = 0
@@ -38,21 +35,26 @@ const SearchPage = () => {
             ticketPrice
         )
     }
-    console.log(budgetCheck())
+
+    //create logic for listBudget <= ticketTotal, boolean result
+    const budgetDifference = () => {
+        const remaining = listBudget - ticketTotal;
+        if (remaining > 0) {
+            console.log("NOT BROKE")
+        }
+        else {
+            console.log("WHERES MY MONEY???")
+        }
+    }
+
+
 
     const updatePrice = (currentTicketPrice) => {
         const tempVariable = budgetCheck() + currentTicketPrice;
         setTicketTotal(tempVariable)
+        budgetDifference();
     }
 
-    // consider putting this on click event
-    // useEffect(() => {
-        
-    //     console.log("hello")
-    //     const tempVariable = budgetCheck();
-    //     setTicketTotal(tempVariable)
-    //     console.log(tempVariable, "his esther")
-    // },)
 
     const apiCall = (event) => {
         event.preventDefault()
@@ -104,29 +106,15 @@ const SearchPage = () => {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `${listID}`);
 
-    const ticketArray = [];
-    get(dbRef).then((snapshot) => {
-        const tempObject = snapshot.val();
-        setListBudget(tempObject.budget);
-        delete tempObject.budget
-        delete tempObject.name
-
-        for (const item in tempObject) {
-            ticketArray.push(item);
-            // console.log("dbItem", item)
-            // if (item.priceRanges) {
-            // }
-        } // for-in END
-    })
-    console.log("this is prices", ticketArray);
+        onValue(dbRef, (snapshot) => {
+            setListBudget(snapshot.val().budget);
+        })
     //#endregion
+
     }, [])
 
-
+//#region useEffect for filtering API data into paid events and free events
     useEffect(()=>{
-
-   
-
                // creating a copy so we dont mutate the original data
                 
                const copyOfData = [...data];
@@ -146,12 +134,14 @@ const SearchPage = () => {
                 setPaidArray(primaryPaidArray);
                 // setFreeArray(primaryFreeArray);
         }, [data])
+//#endregion
+    
+//get user list object from Firebase
 
+useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
-
-    useEffect(() => {
-        onValue(dbRef, (response) => {
+    onValue(dbRef, (response) => {
             const firebaseList = response.val()
             const tempArray = []
 

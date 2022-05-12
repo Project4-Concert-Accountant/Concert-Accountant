@@ -58,15 +58,10 @@ const UserList = () => {
                 {
                     userListArray.map((list) => {
                         return (
-                            <li key={list.id}>
+                            <li className= "firebaseUserList" key={list.id}>
                                 <p>{list.data.name}</p>
                                 <p>{list.data.budget}</p>
                                 <EventInfo eventArray={showList} />
-                                {/* <ul>{showList.map((item) => {
-                                    return (
-                                        <li>{item.name}</li>
-                                    )
-                                })}</ul> */}
                                 <Link to={`/lists/${list.id}`}>+++</Link>
                             </li>
                         )
