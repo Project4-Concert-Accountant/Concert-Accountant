@@ -28,25 +28,50 @@ const UserList = () => {
         })
     }, [])
 
+    // Creating anew User array without empty string from firebase
+    useEffect(() => {
+
+        // creating primary list to get the concert data back from the firebase
+        const primaryShowList = []
+        // final list was created to separate the objects into each index in the array
+        const finalShowList = []
+        const copyUserListArray = [...userListArray]
+        copyUserListArray.forEach((list) => {
+            primaryShowList.push(list.data.concert)
+
+        })
+        for (let key in primaryShowList[0]) {
+            finalShowList.push(primaryShowList[0][key])
+        }
+
+        //splicing to get rid off the empty string from firebase
+        finalShowList.splice(0, 1)
+
+    }, [userListArray])
+
+
+
     return (
-       <>
-        <ul>
-            {
-                userListArray.map((list) => {
-                    return (
-                        <li key={list.id}>
-                            <p>{list.data.name}</p>
-                            <p>{list.data.budget}</p>
-                            <Link to={`/lists/${list.id}`}>+++</Link>
-                        </li>
+        <>
+            <ul>
+                {
+                    userListArray.map((list) => {
+                        return (
+                            <li key={list.id}>
+                                <p>{list.data.name}</p>
+                                <p>{list.data.budget}</p>
+                                {/* <p>{list.data.concert}</p> */}
+                                <Link to={`/lists/${list.id}`}>+++</Link>
+                            </li>
 
-                    )
+                        )
 
-                })
-            }
-        </ul>
-        {/* <SearchPage/> */}
-       </>
+                    })
+                }
+            </ul>
+            {/* {console.log("Hello")} */}
+
+        </>
     )
 }
 
