@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
 import firebase from "../firebase";
-import { getDatabase, ref, onValue } from "firebase/database"
+import { getDatabase, ref, onValue, set } from "firebase/database"
 import UserList from "./UserList";
 
 
@@ -50,6 +50,7 @@ const SearchPage = () => {
 
     //create logic for listBudget <= ticketTotal, boolean result
     const budgetDifference = (currentTicketPrice) => {
+        
         const remaining = listBudget - ticketTotal - currentTicketPrice;
         setRemainingBudget(remaining);
 
@@ -64,9 +65,15 @@ const SearchPage = () => {
 
 
     const updatePrice = (currentTicketPrice) => {
+        // setting up new ref to push ticketTotal to firebase
+        const setRef = ref(database, `/${listID}/currentTotal`);
+
         const tempVariable = budgetCheck() + currentTicketPrice;
-        setTicketTotal(tempVariable)
-        // budgetDifference(currentTicketPrice);
+        // pushing new total to firebase
+        set(setRef, tempVariable);
+        setTicketTotal(tempVariable);
+
+        budgetDifference(currentTicketPrice);
     }
 
 
@@ -132,8 +139,10 @@ const SearchPage = () => {
 
         })
     //#endregion
-        
+    setRemainingBudget(listBudget);
+    console.log("this is the remaining buget on page load", remainingBudget);
     }, [])
+    
 
 //#region useEffect for filtering API data into paid events and free events
     useEffect(()=>{
