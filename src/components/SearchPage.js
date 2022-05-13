@@ -118,6 +118,17 @@ const SearchPage = () => {
     const handleUserSearch = (event) => {
         const searchQuery = event.target.value;
         setUserSearch(searchQuery);    
+    } 
+
+    const budgetCalculator = () => {
+       // no shows in the list
+        if (ticketTotal === 0){
+            setRemainingBudget(listBudget);
+        }
+        else{
+            budgetDifference(0);
+        }
+        console.log("the current remaining budget is", remainingBudget)
     }
 
     useEffect(() => {
@@ -142,6 +153,10 @@ const SearchPage = () => {
     setRemainingBudget(listBudget);
     console.log("this is the remaining buget on page load", remainingBudget);
     }, [])
+
+    useEffect(()=>{
+        budgetCalculator();
+    },[listBudget])
     
 
 //#region useEffect for filtering API data into paid events and free events
