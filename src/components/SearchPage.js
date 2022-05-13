@@ -10,7 +10,6 @@ import UserList from "./UserList";
 const SearchPage = () => {
     // current list's firebase key id
     const { listID } = useParams();
-
     // api states 
     const [userSearch, setUserSearch] = useState("")
     const [data, setData] = useState([]);
@@ -18,34 +17,42 @@ const SearchPage = () => {
      // use the free array for broke mode later
     // const [freeArray, setFreeArray] = useState([]);
 
-    // user's current list
+    // user's current list // this holds the name
     const [userListArray, setUserListArray] = useState([]);
-    const [showList, setShowList] = useState([]);
-    const [remainingBudget, setRemainingBudget] = useState(100)
-    
-
     //creating state to store budget from firebase object
     const [listBudget, setListBudget] = useState(0)
+    const [currentConcerts, setCurrentConcerts] = useState([])
+
+    // const [showList, setShowList] = useState([]);
+    const [remainingBudget, setRemainingBudget] = useState(0)
+
     //create state to hold ticket prices from firebase object
     const [ticketTotal, setTicketTotal] = useState(0)
 
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `${listID}`);
+
     // get ticket prices from firebase and sum them up
     const budgetCheck = () => {
-        const copyOfShowList = [...showList]
-        let ticketPrice = 0
+
+        const copyOfShowList = [...currentConcerts];
+        let ticketPrice = 0;
+
+        // getting the min price from each concert that's already in the list and calculating the sum
         copyOfShowList.forEach(ticket => {
-            ticketPrice = ticketPrice + parseFloat(ticket.priceRanges[0].min)
-            
+            ticketPrice = ticketPrice + parseFloat(ticket.priceRanges[0].min);
         })
+
         return (
             ticketPrice
         )
     }
 
     //create logic for listBudget <= ticketTotal, boolean result
-    const budgetDifference = () => {
-        const remaining = listBudget - ticketTotal;
+    const budgetDifference = (currentTicketPrice) => {
+        const remaining = listBudget - ticketTotal - currentTicketPrice;
         setRemainingBudget(remaining);
+
         if (remaining > 0) {
             console.log("NOT BROKE")
         }
@@ -59,7 +66,7 @@ const SearchPage = () => {
     const updatePrice = (currentTicketPrice) => {
         const tempVariable = budgetCheck() + currentTicketPrice;
         setTicketTotal(tempVariable)
-        budgetDifference();
+        // budgetDifference(currentTicketPrice);
     }
 
 
@@ -107,16 +114,25 @@ const SearchPage = () => {
     }
 
     useEffect(() => {
-             //#REGION firebase stuff
+    //#REGION firebase stuff
     //getting list name and budget object from firebase
-    const database = getDatabase(firebase);
-    const dbRef = ref(database, `${listID}`);
-
         onValue(dbRef, (snapshot) => {
             setListBudget(snapshot.val().budget);
+            setUserListArray(snapshot.val().name);
+            setTicketTotal(snapshot.val().currentTotal);
+            // snapshot.value.concert is an object so we're converting it into an array
+            const tempConcertsArray = [];
+            for (const concert in snapshot.val().concert){
+                tempConcertsArray.push(snapshot.val().concert[concert]);
+            }
+            // removing the first element from the array since it's an empty string
+            tempConcertsArray.shift();
+
+            setCurrentConcerts(tempConcertsArray);
+
         })
     //#endregion
-
+        
     }, [])
 
 //#region useEffect for filtering API data into paid events and free events
@@ -142,54 +158,17 @@ const SearchPage = () => {
         }, [data])
 //#endregion
     
-//get user list object from Firebase
-
-useEffect(() => {
-    const database = getDatabase(firebase);
-    const dbRef = ref(database);
-    onValue(dbRef, (response) => {
-            const firebaseList = response.val()
-            const tempArray = []
-
-            for (const key in firebaseList) {
-                tempArray.push({ id: key, data: firebaseList[key] })
-            }
-            setUserListArray(tempArray)
-        })
-    }, [])
-
-        useEffect(() => {
-
-            // creating primary list to get the concert data back from the firebase
-            const primaryShowList = []
-            // final list was created to separate the objects into each index in the array
-            const finalShowList = []
-            const copyUserListArray = [...userListArray]
-            copyUserListArray.forEach((list) => {
-                primaryShowList.push(list.data.concert)
-    
-            })
-            for (let key in primaryShowList[0]) {
-                finalShowList.push(primaryShowList[0][key])
-            }
-    
-            //splicing to get rid off the empty string from firebase
-            finalShowList.splice(0, 1)
-    
-            setShowList(finalShowList)
-    
-        }, [userListArray])
-        
 
     return (
         <div>
             <div>
                 {
-                    userListArray[0] ? 
+                    userListArray ? 
                     <div>
-                        <h2>your current list's name is {userListArray[0].data.name}</h2>
-                        <h2>your current list's name is {userListArray[0].data.budget}</h2>
+                        <h2>your current list's name is {userListArray}</h2>
+                        <h2>your current list's budget is {listBudget}</h2>
                         <h2>your remaining budget is {remainingBudget}</h2>
+                        <p>your current total is: {ticketTotal}</p>
                      </div> : null
                 }
             </div>
