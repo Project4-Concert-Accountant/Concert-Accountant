@@ -29,42 +29,6 @@ const UserList = () => {
         })
     }, [])
 
-    // // Creating anew User array without empty string from firebase
-    // useEffect(() => {
-    //     // holds all the concert lists from all the users
-    //     const primaryShowList = []
-    //     // will hold a user list to display 
-    //     const finalShowList = []
-    //     // as name implies
-    //     const copyUserListArray = [...userListArray]
-
-    //     // adding each concert array into the primaryShowList
-    //     copyUserListArray.forEach((list) => {
-    //         primaryShowList.push(list.data.concert)
-    //     })
-
-    //     primaryShowList.map(element => {
-
-    //         // checking if the array element is an object
-    //         if(Object.keys(element).length > 0){
-    //             for (const item in element){
-    //                 finalShowList.push(element[item]);
-    //             }
-    //         }
-    //         else {
-    //             console.log("this is not an object", element);
-    //         }
-    //     })
-
-    //     console.log("this is the final", finalShowList);
-    //     //shift to get rid off the empty string from firebase
-    //     finalShowList.shift();
-
-    //     console.log("this is the final", finalShowList);
-
-    //     setShowList(finalShowList)
-
-    // }, [userListArray])
 
     return (
         <>
