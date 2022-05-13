@@ -2,17 +2,66 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
-// import UserList from "./UserList";
+import firebase from "../firebase";
+import { getDatabase, ref, onValue } from "firebase/database"
+import UserList from "./UserList";
+
 
 const SearchPage = () => {
-    const [userSearch, setUserSearch] = useState("")
+    // current list's firebase key id
+    const { listID } = useParams();
 
+    // api states 
+    const [userSearch, setUserSearch] = useState("")
     const [data, setData] = useState([]);
     const [paidArray, setPaidArray] = useState([]);
-    // use the free array for broke mode later
+     // use the free array for broke mode later
     // const [freeArray, setFreeArray] = useState([]);
 
-    const { listID } = useParams();
+    // user's current list
+    const [userListArray, setUserListArray] = useState([]);
+    const [showList, setShowList] = useState([]);
+    const [remainingBudget, setRemainingBudget] = useState(100)
+    
+
+    //creating state to store budget from firebase object
+    const [listBudget, setListBudget] = useState(0)
+    //create state to hold ticket prices from firebase object
+    const [ticketTotal, setTicketTotal] = useState(0)
+
+    // get ticket prices from firebase and sum them up
+    const budgetCheck = () => {
+        const copyOfShowList = [...showList]
+        let ticketPrice = 0
+        copyOfShowList.forEach(ticket => {
+            ticketPrice = ticketPrice + parseFloat(ticket.priceRanges[0].min)
+            
+        })
+        return (
+            ticketPrice
+        )
+    }
+
+    //create logic for listBudget <= ticketTotal, boolean result
+    const budgetDifference = () => {
+        const remaining = listBudget - ticketTotal;
+        setRemainingBudget(remaining);
+        if (remaining > 0) {
+            console.log("NOT BROKE")
+        }
+        else {
+            console.log("WHERES MY MONEY???")
+        }
+    }
+
+
+
+    const updatePrice = (currentTicketPrice) => {
+        const tempVariable = budgetCheck() + currentTicketPrice;
+        setTicketTotal(tempVariable)
+        budgetDifference();
+    }
+
 
     const apiCall = (event) => {
         event.preventDefault()
@@ -33,20 +82,49 @@ const SearchPage = () => {
             .then((res) => {
                 // the useful data from api
                 const apiData = res.data._embedded.events
-                setData(apiData);
+                // take only the data we want from apiData
+                const destructuredApiData = []
+                apiData.map((object) => {
+                    //for each object, deconstruct the following
+                    const {id, name, dates, priceRanges, images} = object
+                    const newObject = {id, name, dates, priceRanges, images}
+
+                    return (
+                        destructuredApiData.push(newObject)
+                        
+                    ) // return END
+
+                })// map END
+                console.log(destructuredApiData);
+
+                setData(destructuredApiData);
             })
     }
 
     const handleUserSearch = (event) => {
         const searchQuery = event.target.value;
-        setUserSearch(searchQuery)
-        console.log(userSearch)
+        setUserSearch(searchQuery);    
     }
 
+    useEffect(() => {
+             //#REGION firebase stuff
+    //getting list name and budget object from firebase
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `${listID}`);
 
+        onValue(dbRef, (snapshot) => {
+            setListBudget(snapshot.val().budget);
+        })
+    //#endregion
+
+    }, [])
+
+//#region useEffect for filtering API data into paid events and free events
     useEffect(()=>{
                // creating a copy so we dont mutate the original data
+                
                 const copyOfData = [...data];
+                
                 const primaryPaidArray = [];
                 // const primaryFreeArray = [];
 
@@ -60,20 +138,70 @@ const SearchPage = () => {
         })
 
                 setPaidArray(primaryPaidArray);
-                console.log(primaryPaidArray)
                 // setFreeArray(primaryFreeArray);
         }, [data])
+//#endregion
+    
+//get user list object from Firebase
+
+useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+    onValue(dbRef, (response) => {
+            const firebaseList = response.val()
+            const tempArray = []
+
+            for (const key in firebaseList) {
+                tempArray.push({ id: key, data: firebaseList[key] })
+            }
+            setUserListArray(tempArray)
+        })
+    }, [])
+
+        useEffect(() => {
+
+            // creating primary list to get the concert data back from the firebase
+            const primaryShowList = []
+            // final list was created to separate the objects into each index in the array
+            const finalShowList = []
+            const copyUserListArray = [...userListArray]
+            copyUserListArray.forEach((list) => {
+                primaryShowList.push(list.data.concert)
+    
+            })
+            for (let key in primaryShowList[0]) {
+                finalShowList.push(primaryShowList[0][key])
+            }
+    
+            //splicing to get rid off the empty string from firebase
+            finalShowList.splice(0, 1)
+    
+            setShowList(finalShowList)
+    
+        }, [userListArray])
         
+
     return (
         <div>
-            <h2>{listID}</h2>
+            <div>
+                {
+                    userListArray[0] ? 
+                    <div>
+                        <h2>your current list's name is {userListArray[0].data.name}</h2>
+                        <h2>your current list's name is {userListArray[0].data.budget}</h2>
+                        <h2>your remaining budget is {remainingBudget}</h2>
+                     </div> : null
+                }
+            </div>
+            
             <form onSubmit={apiCall}>
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>
             </form>
-            {paidArray.length === 0 ? null : <EventInfo eventArray={paidArray} listKey ={listID} />}
+            {paidArray.length === 0 ? null : <EventInfo eventArray={paidArray} listKey ={listID} updatePrice = {updatePrice} />}
         </div>
     )
+  
 }
 
 export default SearchPage;

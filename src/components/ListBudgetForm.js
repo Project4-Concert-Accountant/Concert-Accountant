@@ -6,11 +6,13 @@ const ListBudgetForm = () => {
     //create state for budget value to limit input to numbers only
     const [budget, setBudget] = useState(0);
     const [name, setName] = useState("");
+    const [concert, setConcert] = useState([""])
     const database = getDatabase(firebase);
     const dbRef = ref(database);
     const listName = {
         name: name,
-        budget: budget
+        budget: budget,
+        concert: concert
     };
 
     // const numberCheck = (event) => {
@@ -26,6 +28,8 @@ const ListBudgetForm = () => {
                     (e) => {
                         e.preventDefault()
                         push(dbRef, listName);
+                        //REMOVE LATER.
+                        alert("added to firebase");
 
                     }
                 }>
