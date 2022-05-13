@@ -3,20 +3,26 @@ import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
 import { useParams } from "react-router-dom";
 import firebase from "../firebase";
-import { getDatabase, ref, get, onValue } from "firebase/database"
+import { getDatabase, ref, onValue } from "firebase/database"
 import UserList from "./UserList";
 
 
 const SearchPage = () => {
+    // current list's firebase key id
     const { listID } = useParams();
+
+    // api states 
     const [userSearch, setUserSearch] = useState("")
     const [data, setData] = useState([]);
     const [paidArray, setPaidArray] = useState([]);
-    const [userListArray, setUserListArray] = useState([])
-    const [showList, setShowList] = useState([])
-    
-    // use the free array for broke mode later
+     // use the free array for broke mode later
     // const [freeArray, setFreeArray] = useState([]);
+
+    // user's current list
+    const [userListArray, setUserListArray] = useState([]);
+    const [showList, setShowList] = useState([]);
+    const [remainingBudget, setRemainingBudget] = useState(100)
+    
 
     //creating state to store budget from firebase object
     const [listBudget, setListBudget] = useState(0)
@@ -39,6 +45,7 @@ const SearchPage = () => {
     //create logic for listBudget <= ticketTotal, boolean result
     const budgetDifference = () => {
         const remaining = listBudget - ticketTotal;
+        setRemainingBudget(remaining);
         if (remaining > 0) {
             console.log("NOT BROKE")
         }
@@ -96,8 +103,7 @@ const SearchPage = () => {
 
     const handleUserSearch = (event) => {
         const searchQuery = event.target.value;
-        setUserSearch(searchQuery)     
-        
+        setUserSearch(searchQuery);    
     }
 
     useEffect(() => {
@@ -117,7 +123,7 @@ const SearchPage = () => {
     useEffect(()=>{
                // creating a copy so we dont mutate the original data
                 
-               const copyOfData = [...data];
+                const copyOfData = [...data];
                 
                 const primaryPaidArray = [];
                 // const primaryFreeArray = [];
@@ -174,9 +180,20 @@ useEffect(() => {
     
         }, [userListArray])
         
-        
+
     return (
         <div>
+            <div>
+                {
+                    userListArray[0] ? 
+                    <div>
+                        <h2>your current list's name is {userListArray[0].data.name}</h2>
+                        <h2>your current list's name is {userListArray[0].data.budget}</h2>
+                        <h2>your remaining budget is {remainingBudget}</h2>
+                     </div> : null
+                }
+            </div>
+            
             <form onSubmit={apiCall}>
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City"/>
                 <button>BUTTONNNNN</button>

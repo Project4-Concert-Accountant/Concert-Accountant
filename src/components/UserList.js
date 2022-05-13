@@ -1,21 +1,22 @@
 import firebase from "../firebase"
 import { getDatabase, ref, onValue, remove } from "firebase/database"
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import EventInfo from "./EventInfo";
-import SearchPage from "./SearchPage";
+
+import UserConcerts from "./UserConcerts";
 
 const UserList = () => {
     //Get data from Firebase through onValue request
     //Display data (name and budget) 
     //add button to add concerts
 
+    // all the lists from firebase
     const [userListArray, setUserListArray] = useState([])
-    const [showList, setShowList] = useState([])
+    // const [showList, setShowList] = useState([])
 
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
+    // gets all the lists from firebase
     useEffect(() => {
         onValue(dbRef, (response) => {
             const firebaseList = response.val()
@@ -28,28 +29,42 @@ const UserList = () => {
         })
     }, [])
 
-    // Creating anew User array without empty string from firebase
-    useEffect(() => {
+    // // Creating anew User array without empty string from firebase
+    // useEffect(() => {
+    //     // holds all the concert lists from all the users
+    //     const primaryShowList = []
+    //     // will hold a user list to display 
+    //     const finalShowList = []
+    //     // as name implies
+    //     const copyUserListArray = [...userListArray]
 
-        // creating primary list to get the concert data back from the firebase
-        const primaryShowList = []
-        // final list was created to separate the objects into each index in the array
-        const finalShowList = []
-        const copyUserListArray = [...userListArray]
-        copyUserListArray.forEach((list) => {
-            primaryShowList.push(list.data.concert)
+    //     // adding each concert array into the primaryShowList
+    //     copyUserListArray.forEach((list) => {
+    //         primaryShowList.push(list.data.concert)
+    //     })
 
-        })
-        for (let key in primaryShowList[0]) {
-            finalShowList.push(primaryShowList[0][key])
-        }
+    //     primaryShowList.map(element => {
 
-        //splicing to get rid off the empty string from firebase
-        finalShowList.splice(0, 1)
+    //         // checking if the array element is an object
+    //         if(Object.keys(element).length > 0){
+    //             for (const item in element){
+    //                 finalShowList.push(element[item]);
+    //             }
+    //         }
+    //         else {
+    //             console.log("this is not an object", element);
+    //         }
+    //     })
 
-        setShowList(finalShowList)
+    //     console.log("this is the final", finalShowList);
+    //     //shift to get rid off the empty string from firebase
+    //     finalShowList.shift();
 
-    }, [userListArray])
+    //     console.log("this is the final", finalShowList);
+
+    //     setShowList(finalShowList)
+
+    // }, [userListArray])
 
     return (
         <>
@@ -59,10 +74,11 @@ const UserList = () => {
                     userListArray.map((list) => {
                         return (
                             <li className= "firebaseUserList" key={list.id}>
-                                <p>{list.data.name}</p>
-                                <p>{list.data.budget}</p>
-                                <EventInfo eventArray={showList} />
-                                <Link to={`/lists/${list.id}`}>+++</Link>
+                                <UserConcerts 
+                                listName={list.data.name} 
+                                listBudget={list.data.budget} 
+                                listId={list.id}
+                                listConcerts={list.data.concert}/>
                             </li>
                         )
                     })

@@ -1,8 +1,14 @@
 import React from 'react'
+import UserList from './UserList'
+import ListBudgetForm from './ListBudgetForm'
 
 const Homepage = () => {
   return (
-    <div>Homepage</div>
+    <div>
+      <p>Homepage</p>
+      <ListBudgetForm />
+      <UserList />
+    </div>
   )
 }
 
