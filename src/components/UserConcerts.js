@@ -12,14 +12,14 @@ const UserConcerts = ({listName, listBudget, listId , listConcerts}) => {
     console.log(displayConcertsArray);
 
     return (
-        <div>
+        <div >
             <p>{listName}</p>
             <p>{listBudget}</p>
             <ul>
                 {
                     displayConcertsArray.map(concertShow => {
                         return (
-                            <div className="yolo">
+                            <div className="yolo" key={concertShow.name}>
                                 <p>{concertShow.name}</p>
                                 <p>{concertShow.priceRanges[0].min}</p>
                             </div>
