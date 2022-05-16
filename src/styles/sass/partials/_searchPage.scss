@@ -1,0 +1,88 @@
+.searchCard {
+    border: 3px solid $blueSeaColor;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $green;
+    color: $backgroundColor;
+    padding: 10px 0;
+    
+
+    *{
+        padding: 5px 0;
+    }
+
+    button {
+        margin-top: 5px;
+        padding: 5px 10px;
+        background-color: $purple;
+        transition: 0.5s;
+        border: 2px solid $backgroundColor;
+        text-transform: capitalize;
+        border-radius: 10px;
+        cursor: pointer;
+    
+        &:hover,
+        &:focus {
+            background-color: $strongPurple;
+            color: $not-so-white;
+            
+        }
+    }
+
+    a {
+        color: $backgroundColor;
+        text-decoration: underline;
+        transition: 0.5s;
+
+        &:hover, &:focus {
+            scale: 1.1;
+        }
+    }
+
+    h3 {
+        font-family: $headerFont;
+        text-transform: uppercase;
+    }
+}
+
+.searchResultsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+   
+}
+
+
+.imgContainer {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+.searchPageListContainer {
+    position: relative;
+    background-color: blue;
+
+    .searchPageList {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: $not-so-white;
+            border: 10px;
+            background-color: $backgroundColor;
+            padding: 10px;
+        }
+
+        h4 {
+            text-transform: uppercase;
+            font-family: $headerFont;
+        }
+}
+

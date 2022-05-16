@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: $headerFont;
+    font-size: 125%;
+    background-color: $backgroundColor;
+    color: $not-so-white;
+}
+
+.App {
+    text-align: center;
+}
+
+.wrapper {
+    max-width: 420px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+img {
+    width: 100%;
+    display: block;
+
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+h1 {
+    font-family: $headerFont;
+    font-size: 2rem;
+    color: $green;
+    margin-top: 40px;
+}

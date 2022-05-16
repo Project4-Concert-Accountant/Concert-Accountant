@@ -190,21 +190,19 @@ const SearchPage = () => {
 
     return (
         <div>
-            <div>
+            <div className="searchPageListContainer">
                 {
                     userListArray ?
-                        <div>
-                            <h2>your current list's name is {userListArray}</h2>
-                            <h2>your current list's budget is {listBudget}</h2>
-                            <h2>your remaining budget is {remainingBudget}</h2>
-                            <p>your current total is: {ticketTotal}</p>
+                        <div className="listInfo searchPageList">
+                            <h4>{userListArray}</h4>
+                            <h4>budget: ${remainingBudget}</h4>
                         </div> : null
                 }
             </div>
 
-            <form onSubmit={apiCall}>
+            <form onSubmit={apiCall} className='apiSearch'>
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City" />
-                <button disabled={!userSearch}>BUTTONNNNNNNNNNNNNNNNNNNNNNNN</button>
+                <button disabled={!userSearch}>Search</button>
             </form>
             {paidArray.length === 0 ? <p>{apiError}</p> : <EventInfo eventArray={paidArray} listKey={listID} updatePrice={updatePrice} />}
         </div>

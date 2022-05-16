@@ -13,8 +13,8 @@ const ListBudgetForm = () => {
     const listName = {
         name: name,
         budget: budget,
-        concert: concert,
-        currentTotal: currentTotal
+        concert: [""],
+        currentTotal: 0
     };
 
     // const numberCheck = (event) => {
@@ -25,7 +25,8 @@ const ListBudgetForm = () => {
 
     return (
         <div className="listNameBudget">
-            <form
+            <h2>Create a Concert List!</h2>
+            <form className="initialForm"
                 onSubmit={
                     (e) => {;
                         e.preventDefault()
@@ -33,13 +34,13 @@ const ListBudgetForm = () => {
 
                     }
                 }>
-                <p>Create a budget!</p>
+
                 <label htmlFor="listName" className="sr-only">List Name</label>
 
                 <input
                     type="text"
                     id="listName"
-                    placeholder="Name the list"
+                    placeholder="List name"
                     onChange={(event) => {
                         setName(event.target.value);
                     }}
@@ -51,7 +52,7 @@ const ListBudgetForm = () => {
                     pattern="[0-9]*"
                     title="numbers only"
                     id="budget"
-                    placeholder="How much is your budget?"
+                    placeholder="Budget"
                     //event listener
                     onChange={(event) => {
                         setBudget(event.target.value);
@@ -60,7 +61,7 @@ const ListBudgetForm = () => {
 
 
 
-                <button disabled={!name} type="submit" >Create a budget!</button>
+                <button disabled={!name} type="submit" >Create a list!</button>
 
             </form>
 

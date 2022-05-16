@@ -15,22 +15,22 @@ const EventInfo = ({ eventArray, listKey, updatePrice }) => {
 
 
     return (
-        <div className='container'>
+        <div className='searchResultsContainer'>
             {
                 Object.keys(eventArray).length === 0 ? "this is empty" :
 
                     eventArray.map(singleEvent => {
                         return (
-                            <div key={singleEvent.id} className='redBorder'>
-                                <p>{singleEvent.name}</p>
+                            <div key={singleEvent.id} className='searchCard'>
+                                <h3>{singleEvent.name}</h3>
                                 <div className="imgContainer">
-                                    <img src={singleEvent.images[2].url} alt={`a poster for ${singleEvent.name}`} />
+                                    <img src={singleEvent.images[0].url} alt={`a poster for ${singleEvent.name}`} />
                                 </div>
                                 {/* {props.children} */}
                                 <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
                                 {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
-                                <p>{singleEvent.priceRanges[0].min}</p>
-                                <a href={singleEvent.url}><p>Get Tickets</p></a>
+                                <p>${singleEvent.priceRanges[0].min}</p>
+                                <a href={singleEvent.url}>Get Tickets</a>
                                 <button onClick={() => { addEvent(singleEvent); updatePrice(singleEvent.priceRanges[0].min); alert("Added to your list!"); }}>Add this show</button>
                             </div>
                         )

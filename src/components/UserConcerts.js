@@ -1,33 +1,50 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 // getting props from userLists.js
-const UserConcerts = ({listName, listBudget, listId , listConcerts}) => {
+const UserConcerts = ({ listName, listBudget, listId, listConcerts }) => {
 
     const displayConcertsArray = []
-    for (const concert in listConcerts){
+    for (const concert in listConcerts) {
         displayConcertsArray.push(listConcerts[concert]);
     }
 
     displayConcertsArray.shift();
 
     return (
-        <div >
-            <p>{listName}</p>
-            <p>{listBudget}</p>
+        <div className="userListContainer">
+            <div className="listInfo">
+                <h3>{listName}</h3>
+                <h3>${listBudget}</h3>
+            </div>
             <ul>
                 {
                     displayConcertsArray.map(concertShow => {
                         return (
-                            <li className="yolo" key={concertShow.name}>
-                                <p>{concertShow.name}</p>
-                                <p>{concertShow.priceRanges[0].min}</p>
+                            <li className="concertContainer" key={concertShow.name}>
+                                <div className="mainContentContainer">
+                                    <div className="imgContainer">
+                                        <img src={`${concertShow.images[0].url}`} alt={concertShow.name}/> 
+                                    </div>
+                                    <div className="subListInfo">
+                                        <p>{concertShow.name}</p>
+                                        <p>${concertShow.priceRanges[0].min}</p>
+                                        <p>{concertShow.dates.start.localDate}</p>
+                                        <p>{concertShow.dates.start.localTime}</p>
+                                    </div>
+                                </div>
+                                <button>Remove</button>
                             </li>
                         )
                     })
                 }
 
             </ul>
-            <Link to={`/lists/${listId}`}>+++</Link>
+            <Link to={`/lists/${listId}`} className="addConcertButton">
+                <FontAwesomeIcon icon={faPlus} />
+            </Link>
         </div>
     )
 }
