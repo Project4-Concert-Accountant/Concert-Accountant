@@ -5,7 +5,6 @@ import ListBudgetForm from './ListBudgetForm'
 const Homepage = () => {
   return (
     <div>
-      <p>Homepage</p>
       <ListBudgetForm />
       <UserList />
     </div>
