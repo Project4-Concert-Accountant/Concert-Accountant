@@ -5,13 +5,9 @@ import Homepage from './components/Homepage';
 
 function App() {
 
-
-
-
   return (
     <div className="wrapper App">
       <h1>Concert Accountant</h1>
-      <p>Makeing a tour list of your own? Add abudget. Pick a city. Add yout shows </p>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/lists/:listID' element={<SearchPage />} />

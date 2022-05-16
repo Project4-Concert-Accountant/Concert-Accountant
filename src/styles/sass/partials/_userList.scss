@@ -1,0 +1,66 @@
+
+.firebaseUserList {
+    border: 3px solid $strongPurple;
+    border-radius: 25px;
+    margin-top: 20px;
+    color: $fontBlue;
+}
+
+.listName {
+    text-transform: uppercase;
+}
+
+.userListContainer {
+    background-color: $purple;
+    border-radius: 20px;
+    min-height: 100%;
+    padding: 20px 0 10px 0 ;
+
+    .listInfo {
+        border-bottom: 3px solid $strongPurple;
+        padding-bottom: 10px;
+
+        h3 {
+            text-transform: uppercase;
+        }
+    }
+}
+
+.listInfo, .subListInfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.subListInfo {
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+.concertContainer {
+    margin: 20px auto;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid $backgroundColor;
+    background-color: $not-so-white;
+    width: 95%;
+    box-shadow: 4px 4px 0px $backgroundColor;
+
+    display: flex;
+
+    .imgContainer {
+        max-width: 150px;
+    }
+}
+
+.addConcertButton {
+    padding: 10px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    background-color: $not-so-white;
+    
+    .fa-plus {
+        color: $darkRed;
+    }
+}

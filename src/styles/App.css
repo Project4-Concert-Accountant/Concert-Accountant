@@ -277,8 +277,8 @@ html {
 html {
   font-family: "Maitree", serif;
   font-size: 125%;
-  background-color: black;
-  color: white;
+  background-color: #212021;
+  color: #F1F1F1;
 }
 
 .App {
@@ -308,6 +308,7 @@ a {
 h1 {
   font-family: "Maitree", serif;
   font-size: 2rem;
+  color: #DBF0EF;
 }
 
 .listNameBudget {
@@ -329,10 +330,112 @@ h1 {
 .initialForm button {
   margin: 0 auto;
   width: 50%;
-  color: green;
+  min-height: 40px;
+  color: rgb(17, 103, 233);
+  background-color: #DBF0EF;
   border-radius: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
+  border-color: #212021;
+}
+.initialForm [type=text]::-webkit-input-placeholder, .initialForm button::-webkit-input-placeholder {
+  opacity: 0.5;
+}
+.initialForm [type=text]::-moz-placeholder, .initialForm button::-moz-placeholder {
+  opacity: 0.5;
+}
+.initialForm [type=text]:-ms-input-placeholder, .initialForm button:-ms-input-placeholder {
+  opacity: 0.5;
+}
+.initialForm [type=text]::-ms-input-placeholder, .initialForm button::-ms-input-placeholder {
+  opacity: 0.5;
+}
+.initialForm [type=text]::placeholder,
+.initialForm button::placeholder {
+  opacity: 0.5;
+}
+.initialForm [type=text] {
+  padding-left: 10px;
+}
+.initialForm button {
+  -webkit-box-shadow: 4px 4px 0px #F1F1F1;
+          box-shadow: 4px 4px 0px #F1F1F1;
+  background-color: #97DAE8;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.initialForm button:hover, .initialForm button:focus {
+  background-color: #462255;
+  color: #F1F1F1;
+  scale: 1.1;
+}
+
+.firebaseUserList {
+  border: 3px solid #462255;
+  border-radius: 25px;
+  margin-top: 20px;
+  color: rgb(17, 103, 233);
+}
+
+.listName {
+  text-transform: uppercase;
+}
+
+.userListContainer {
+  background-color: #C0C8F0;
+  border-radius: 20px;
+  min-height: 100%;
+  padding: 20px 0 10px 0;
+}
+.userListContainer .listInfo {
+  border-bottom: 3px solid #462255;
+  padding-bottom: 10px;
+}
+.userListContainer .listInfo h3 {
+  text-transform: uppercase;
+}
+
+.listInfo, .subListInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 20px;
+}
+
+.subListInfo {
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.concertContainer {
+  margin: 20px auto;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #212021;
+  background-color: #F1F1F1;
+  width: 95%;
+  -webkit-box-shadow: 4px 4px 0px #212021;
+          box-shadow: 4px 4px 0px #212021;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.concertContainer .imgContainer {
+  max-width: 150px;
+}
+
+.addConcertButton {
+  padding: 10px;
+  min-width: 45px;
+  min-height: 45px;
+  border-radius: 50%;
+  background-color: #F1F1F1;
+}
+.addConcertButton .fa-plus {
+  color: #AA4465;
 }
 
 .userListContainer a {
@@ -367,14 +470,4 @@ h1 {
 .imgContainer {
   max-width: 400px;
   margin: 0 auto;
-}
-
-.firebaseUserList {
-  border: 2px solid blue;
-  margin-top: 20px;
-  padding-bottom: 20px;
-}
-
-.yolo {
-  border: 1px solid green;
 }

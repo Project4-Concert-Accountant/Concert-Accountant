@@ -16,22 +16,31 @@ const UserConcerts = ({ listName, listBudget, listId, listConcerts }) => {
 
     return (
         <div className="userListContainer">
-            <p>{listName}</p>
-            <p>{listBudget}</p>
+            <div className="listInfo">
+                <h3>{listName}</h3>
+                <h3>${listBudget}</h3>
+            </div>
             <ul>
                 {
                     displayConcertsArray.map(concertShow => {
                         return (
-                            <li className="yolo" key={concertShow.name}>
+                            <li className="concertContainer" key={concertShow.name}>
+                                <div className="imgContainer">
+                                <img src={`${concertShow.images[2].url}`} alt={concertShow.name}/> 
+                                </div>
+                                <div className="subListInfo">
                                 <p>{concertShow.name}</p>
-                                <p>{concertShow.priceRanges[0].min}</p>
+                                <p>${concertShow.priceRanges[0].min}</p>
+                                <p>{concertShow.dates.start.localDate} @ {concertShow.dates.start.localTime}</p>
+                                </div>
+                                <button>Remove</button>
                             </li>
                         )
                     })
                 }
 
             </ul>
-            <Link to={`/lists/${listId}`}>
+            <Link to={`/lists/${listId}`} className="addConcertButton">
                 <FontAwesomeIcon icon={faPlus} />
             </Link>
         </div>

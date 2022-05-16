@@ -1,32 +1,11 @@
 @import "./partials/setUp";
-@import "./partials/basicStyles";
+@import "./partials/variables";
+@import "./partials/typography";
+@import "./partials/form";
+@import "./partials/userList";
 
-h1 {
-  font-family: "Maitree", serif;
-  font-size: 2rem;
-}
 
-.listNameBudget {
-  margin-top: 25px;
-}
 
-.initialForm {
-  display: flex;
-  flex-direction: column;
-  margin-top: 15px;
-  padding: 5px;
-
-  [type=text],
-  button {
-    margin: 0 auto;
-    width: 50%;
-    color: green;
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-}
 
 .userListContainer {
   a {
@@ -55,14 +34,4 @@ h1 {
 .imgContainer {
   max-width: 400px;
   margin: 0 auto;
-}
-
-.firebaseUserList {
-  border: 2px solid blue;
-  margin-top: 20px;
-  padding-bottom: 20px;
-}
-
-.yolo {
-  border: 1px solid green;
 }

@@ -1,0 +1,44 @@
+.listNameBudget {
+    margin-top: 25px;
+}
+
+.initialForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    padding: 5px;
+
+    [type=text],
+    button {
+        margin: 0 auto;
+        width: 50%;
+        min-height: 40px;
+        color: $fontBlue;
+        background-color: $green;
+        border-radius: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-color: $backgroundColor;
+
+        &::placeholder{
+            opacity: 0.5;
+        }
+    }
+
+    [type=text]{
+        padding-left: 10px;
+    }
+
+    button {
+        box-shadow: 4px 4px 0px $not-so-white;
+        background-color: $blueSeaColor;
+        transition: 0.5s;
+
+        &:hover, &:focus {
+            background-color: $strongPurple;
+            color: $not-so-white;
+            scale: 1.1;
+        }
+    }
+
+}
