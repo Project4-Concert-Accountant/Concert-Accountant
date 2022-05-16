@@ -48,7 +48,6 @@ const UserList = () => {
                     })
                 }
             </ul>
-            {/* {console.log("Hello")} */}
         </>
     )
 }
