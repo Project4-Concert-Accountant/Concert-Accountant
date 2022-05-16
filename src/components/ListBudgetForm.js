@@ -27,11 +27,9 @@ const ListBudgetForm = () => {
         <div className="listNameBudget">
             <form
                 onSubmit={
-                    (e) => {
+                    (e) => {;
                         e.preventDefault()
                         push(dbRef, listName);
-                        //REMOVE LATER.
-                        alert("added to firebase");
 
                     }
                 }>
@@ -62,7 +60,7 @@ const ListBudgetForm = () => {
 
 
 
-                <button type="submit" >Create a budget!</button>
+                <button disabled={!name} type="submit" >Create a budget!</button>
 
             </form>
 

@@ -9,7 +9,6 @@ const UserConcerts = ({listName, listBudget, listId , listConcerts}) => {
     }
 
     displayConcertsArray.shift();
-    console.log(displayConcertsArray);
 
     return (
         <div >

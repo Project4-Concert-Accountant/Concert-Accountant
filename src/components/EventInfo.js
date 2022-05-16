@@ -30,7 +30,8 @@ const EventInfo = ({ eventArray, listKey, updatePrice }) => {
                                 <p>{singleEvent.dates.start.localDate} at {singleEvent.dates.start.localTime}</p>
                                 {/* <p>{singleEvent.priceRanges && singleEvent.priceRanges[0].min > 0 ? singleEvent.priceRanges[0].min : 'free event'}</p> */}
                                 <p>{singleEvent.priceRanges[0].min}</p>
-                                <button onClick={() => { addEvent(singleEvent); updatePrice(singleEvent.priceRanges[0].min); }}>Add this show</button>
+                                <a href={singleEvent.url}><p>Get Tickets</p></a>
+                                <button onClick={() => { addEvent(singleEvent); updatePrice(singleEvent.priceRanges[0].min); alert("Added to your list!"); }}>Add this show</button>
                             </div>
                         )
                     })
