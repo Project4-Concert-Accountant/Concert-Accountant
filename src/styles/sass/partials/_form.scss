@@ -13,7 +13,7 @@
         margin: 0 auto;
         width: 50%;
         min-height: 40px;
-        color: $fontBlue;
+        color: $backgroundColor;
         background-color: $green;
         border-radius: 10px;
         margin-top: 5px;
@@ -33,6 +33,7 @@
         box-shadow: 4px 4px 0px $not-so-white;
         background-color: $blueSeaColor;
         transition: 0.5s;
+        cursor: pointer;
 
         &:hover, &:focus {
             background-color: $strongPurple;
@@ -41,4 +42,29 @@
         }
     }
 
+}
+
+.apiSearch {
+    input {
+        color: $backgroundColor;
+        background-color: $green;
+        border: 1px solid $backgroundColor;
+        min-height: 35px;
+        border-radius: 10px;
+        padding-left: 10px;
+
+        &::placeholder {
+                opacity: 0.5;
+            }
+    }
+
+    button {
+        background-color: $blueSeaColor;
+        transition: 0.5s;
+        cursor: pointer;
+        min-height: 30px;
+        border: 1px solid $backgroundColor;
+        border-radius: 10px;
+        padding: 5px 8px;
+    }
 }

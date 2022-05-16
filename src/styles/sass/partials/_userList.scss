@@ -63,6 +63,18 @@
             justify-self: flex-end;
             padding: 5px 10px;
             margin-bottom: 5px;
+            background-color: $removeRed;
+            border: none;
+            color: $not-so-white;
+            
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.25s;
+
+            &:hover, &:focus {
+                background-color: $removeRed2;
+                color: $not-so-white;
+            }
         }
 
 }

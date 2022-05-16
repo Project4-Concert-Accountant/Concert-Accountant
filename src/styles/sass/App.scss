@@ -3,35 +3,7 @@
 @import "./partials/typography";
 @import "./partials/form";
 @import "./partials/userList";
+@import "./partials/searchPage";
 
 
 
-
-.userListContainer {
-  a {
-    color: white;
-  }
-}
-
-
-
-.redBorder {
-  border: 2px solid red;
-  border-radius: 5px;
-  width: 50%;
-  display: flex;
-
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.imgContainer {
-  max-width: 400px;
-  margin: 0 auto;
-}

@@ -61,7 +61,7 @@ const ListBudgetForm = () => {
 
 
 
-                <button disabled={!name} type="submit" >Create a budget!</button>
+                <button disabled={!name} type="submit" >Create a list!</button>
 
             </form>
 
