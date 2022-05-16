@@ -57,13 +57,6 @@ const SearchPage = () => {
 
         const remaining = listBudget - ticketTotal - currentTicketPrice;
         setRemainingBudget(remaining);
-
-        if (remaining > 0) {
-            console.log("NOT BROKE")
-        }
-        else {
-            console.log("WHERES MY MONEY???")
-        }
     }
 
 
@@ -100,22 +93,20 @@ const SearchPage = () => {
             .then((res) => {
                 // the useful data from api
                 const apiData = res.data._embedded.events
-                console.log("This is my api data", res);
 
                 if (res.statusText === "OK") {
                     // take only the data we want from apiData
                     const destructuredApiData = []
                     apiData.map((object) => {
                         //for each object, deconstruct the following
-                        const { id, name, dates, priceRanges, images } = object
-                        const newObject = { id, name, dates, priceRanges, images }
+                        const { id, name, dates, priceRanges, images, url } = object
+                        const newObject = { id, name, dates, priceRanges, images, url }
 
                         return (
                             destructuredApiData.push(newObject)
                         ) // return END
 
                     })// map END
-                    console.log(destructuredApiData);
 
                     setData(destructuredApiData)
 
@@ -144,7 +135,6 @@ const SearchPage = () => {
         else {
             budgetDifference(0);
         }
-        console.log("the current remaining budget is", remainingBudget)
     }
 
     useEffect(() => {
@@ -167,7 +157,6 @@ const SearchPage = () => {
         })
         //#endregion
         setRemainingBudget(listBudget);
-        console.log("this is the remaining buget on page load", remainingBudget);
     }, [])
 
     useEffect(() => {
@@ -215,7 +204,7 @@ const SearchPage = () => {
 
             <form onSubmit={apiCall}>
                 <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City" />
-                <button>BUTTONNNNN</button>
+                <button disabled={!userSearch}>BUTTONNNNNNNNNNNNNNNNNNNNNNNN</button>
             </form>
             {paidArray.length === 0 ? <p>{apiError}</p> : <EventInfo eventArray={paidArray} listKey={listID} updatePrice={updatePrice} />}
         </div>
