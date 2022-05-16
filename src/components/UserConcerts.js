@@ -24,13 +24,16 @@ const UserConcerts = ({ listName, listBudget, listId, listConcerts }) => {
                     displayConcertsArray.map(concertShow => {
                         return (
                             <li className="concertContainer" key={concertShow.name}>
-                                <div className="imgContainer">
-                                <img src={`${concertShow.images[2].url}`} alt={concertShow.name}/> 
-                                </div>
-                                <div className="subListInfo">
-                                <p>{concertShow.name}</p>
-                                <p>${concertShow.priceRanges[0].min}</p>
-                                <p>{concertShow.dates.start.localDate} @ {concertShow.dates.start.localTime}</p>
+                                <div className="mainContentContainer">
+                                    <div className="imgContainer">
+                                        <img src={`${concertShow.images[0].url}`} alt={concertShow.name}/> 
+                                    </div>
+                                    <div className="subListInfo">
+                                        <p>{concertShow.name}</p>
+                                        <p>${concertShow.priceRanges[0].min}</p>
+                                        <p>{concertShow.dates.start.localDate}</p>
+                                        <p>{concertShow.dates.start.localTime}</p>
+                                    </div>
                                 </div>
                                 <button>Remove</button>
                             </li>

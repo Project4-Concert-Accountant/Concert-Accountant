@@ -3,7 +3,7 @@
     border: 3px solid $strongPurple;
     border-radius: 25px;
     margin-top: 20px;
-    color: $fontBlue;
+    color: $backgroundColor;
 }
 
 .listName {
@@ -26,16 +26,23 @@
     }
 }
 
-.listInfo, .subListInfo {
+.listInfo {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 20px ;
 }
 
 .subListInfo {
-    margin-bottom: 10px;
-    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
 }
+
+// .subListInfo {
+//     margin-bottom: 10px;
+//     padding-top: 10px;
+// }
 
 .concertContainer {
     margin: 20px auto;
@@ -47,9 +54,37 @@
     box-shadow: 4px 4px 0px $backgroundColor;
 
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
 
-    .imgContainer {
-        max-width: 150px;
+    button {
+            align-self: flex-end;
+            justify-self: flex-end;
+            padding: 5px 10px;
+            margin-bottom: 5px;
+        }
+
+}
+
+.mainContentContainer {
+    display: flex;
+
+    .subListInfo{
+        width: 60%;
+    }
+    .imgContainer{
+        margin: 0;
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            object-fit: cover;
+            // border: 1px solid $backgroundColor;
+            box-shadow: 2px 2px 0px $backgroundColor;
+        }
     }
 }
 

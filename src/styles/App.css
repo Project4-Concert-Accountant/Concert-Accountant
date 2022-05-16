@@ -374,7 +374,7 @@ h1 {
   border: 3px solid #462255;
   border-radius: 25px;
   margin-top: 20px;
-  color: rgb(17, 103, 233);
+  color: #212021;
 }
 
 .listName {
@@ -395,7 +395,7 @@ h1 {
   text-transform: uppercase;
 }
 
-.listInfo, .subListInfo {
+.listInfo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -406,8 +406,17 @@ h1 {
 }
 
 .subListInfo {
-  margin-bottom: 10px;
-  padding-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 0;
 }
 
 .concertContainer {
@@ -422,9 +431,49 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 10px;
 }
-.concertContainer .imgContainer {
-  max-width: 150px;
+.concertContainer button {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  justify-self: flex-end;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+
+.mainContentContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.mainContentContainer .subListInfo {
+  width: 60%;
+}
+.mainContentContainer .imgContainer {
+  margin: 0;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.mainContentContainer .imgContainer img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-shadow: 2px 2px 0px #212021;
+          box-shadow: 2px 2px 0px #212021;
 }
 
 .addConcertButton {

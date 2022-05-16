@@ -13,8 +13,8 @@ const ListBudgetForm = () => {
     const listName = {
         name: name,
         budget: budget,
-        concert: concert,
-        currentTotal: currentTotal
+        concert: [""],
+        currentTotal: 0
     };
 
     // const numberCheck = (event) => {
