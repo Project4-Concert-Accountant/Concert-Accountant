@@ -1,0 +1,28 @@
+.footer {
+
+    background-color: $not-so-white;
+    height: auto;
+    margin: 20px auto 0px auto;
+    text-align: center;
+    color: $backgroundColor;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    a {
+        color: $strongPurple;
+    }
+
+    .authors {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: 300px;
+        max-width: 50%;
+        margin: 0 auto;
+
+        p {
+            margin: 0 auto;
+        }
+
+    }
+}
