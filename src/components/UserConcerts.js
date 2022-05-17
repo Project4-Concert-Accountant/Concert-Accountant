@@ -6,12 +6,16 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 // getting props from userLists.js
 const UserConcerts = ({ listName, listBudget, listId, listConcerts }) => {
 
-    const displayConcertsArray = []
+    const displayConcertsArray = [];
+    // pushing each concert into the array to display the concerts
     for (const concert in listConcerts) {
         displayConcertsArray.push(listConcerts[concert]);
     }
-
+    // removing the first element in the array since it's an emepty string
     displayConcertsArray.shift();
+
+    // sortting the array with the highest price to lowest
+    displayConcertsArray.sort(function(a, b){return b.priceRanges[0].min - a.priceRanges[0].min});
 
     return (
         <div className="userListContainer">

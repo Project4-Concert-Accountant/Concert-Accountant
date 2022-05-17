@@ -29,7 +29,6 @@ const UserList = () => {
         })
     }, [])
 
-
     return (
         <>
             <ul>
