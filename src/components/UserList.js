@@ -30,7 +30,7 @@ const UserList = () => {
     }, [])
 
     return (
-        <>
+        <div className="firebaseListContainer">
             <ul>
                 {/* Create css class to resize objects for readable list concert */}
                 {
@@ -47,7 +47,7 @@ const UserList = () => {
                     })
                 }
             </ul>
-        </>
+        </div>
     )
 }
 

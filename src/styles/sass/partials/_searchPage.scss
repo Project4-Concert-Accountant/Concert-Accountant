@@ -1,16 +1,3 @@
-.searchCard {
-    border: 3px solid $blueSeaColor;
-    border-radius: 10px;
-    margin: 5px 0;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $green;
-    color: $backgroundColor;
-    padding: 10px 0;
-    
-
     *{
         padding: 5px 0;
     }
@@ -47,7 +34,6 @@
         font-family: $headerFont;
         text-transform: uppercase;
     }
-}
 
 .searchResultsContainer {
     display: flex;
@@ -55,7 +41,25 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-   
+}
+
+.searchCard {
+    border: 3px solid $inputFiledColor;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $green;
+    color: $backgroundColor;
+    padding: 10px 0;
+    min-width: 300px;
+    max-width: 400px;
+
+    &:nth-child(2n) {
+        background-color: $blueSeaColor;
+    }
 }
 
 
@@ -67,7 +71,7 @@
 
 .searchPageListContainer {
     position: relative;
-    background-color: blue;
+    background-color: $backgroundColor;
 
     .searchPageList {
             position: fixed;
