@@ -72,7 +72,7 @@
 .searchResultsContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin-top: 10px;
 }
@@ -80,16 +80,16 @@
 .searchCard {
     border: 3px solid $inputFiledColor;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 10px;
     width: 90%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     background-color: $green;
     color: $backgroundColor;
     padding: 10px 0;
-    min-width: 300px;
-    max-width: 400px;
+    width: 350px;
 
     &:nth-child(2n) {
         background-color: $blueSeaColor;

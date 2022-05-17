@@ -1,7 +1,11 @@
+.brandLogo {
+    padding-bottom: 20px;
+}
+
 .firebaseListContainer {
     ul {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         flex-wrap: wrap;
     }
 }
@@ -11,9 +15,8 @@
     margin-top: 20px;
     color: $backgroundColor;
 
-    max-width: 400px;
-    min-width: 300px;
-    margin: 20px auto;
+    width: 350px;
+    margin: 20px 10px;
 
     &:nth-child(2n) .userListContainer{
         background-color: $green;
