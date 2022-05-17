@@ -534,9 +534,20 @@ h4 {
   min-height: 45px;
   border-radius: 50%;
   background-color: #F1F1F1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  margin-top: 10px;
+}
+.addConcertButton:hover, .addConcertButton:focus {
+  background-color: #AA4465;
+}
+.addConcertButton:hover .fa-plus, .addConcertButton:focus .fa-plus {
+  color: #F1F1F1;
 }
 .addConcertButton .fa-plus {
   color: #AA4465;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .heightAdjuster {

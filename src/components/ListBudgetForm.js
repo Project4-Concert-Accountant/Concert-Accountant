@@ -15,6 +15,11 @@ const ListBudgetForm = () => {
         currentTotal: 0
     };
 
+    const resetInput = () => {
+        setBudget("");
+        setName("");
+    }
+
     return (
         <div className="listNameBudget">
             <h2>Create a Concert List!</h2>
@@ -22,6 +27,8 @@ const ListBudgetForm = () => {
                 onSubmit={(e) => {
                     e.preventDefault()
                     push(dbRef, listName);
+                    resetInput();
+                    alert("Your list has been created!");
                 }
                 }>
 
@@ -31,6 +38,7 @@ const ListBudgetForm = () => {
                     type="text"
                     id="listName"
                     placeholder="List name"
+                    value={name}
                     onChange={(event) => {
                         setName(event.target.value);
                     }}
@@ -43,13 +51,14 @@ const ListBudgetForm = () => {
                     title="numbers only"
                     id="budget"
                     placeholder="Budget"
+                    value={budget}
                     //event listener
                     onChange={(event) => {
                         setBudget(event.target.value);
                     }}
                 />
 
-                <button disabled={!name} type="submit" >Create a list!</button>
+                <button disabled={!name} type="submit">Create a list!</button>
 
             </form>
 

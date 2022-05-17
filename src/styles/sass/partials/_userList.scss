@@ -67,6 +67,7 @@
     background-color: $not-so-white;
     box-shadow: 4px 4px 0px $backgroundColor;
 
+    // for remove btn
     button {
         align-self: flex-end;
         padding: 5px 10px;
@@ -118,8 +119,18 @@
     min-height: 45px;
     border-radius: 50%;
     background-color: $not-so-white;
+    transition: 0.5s;
+    margin-top: 10px;
 
+    &:hover,
+    &:focus {
+        background-color: $darkRed;
+        .fa-plus {
+            color: $not-so-white;
+        }
+    }
     .fa-plus {
         color: $darkRed;
+        transition: 0.5s;
     }
 }
