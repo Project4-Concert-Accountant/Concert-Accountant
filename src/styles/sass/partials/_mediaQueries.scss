@@ -3,4 +3,11 @@
         max-width: 1400px;
     }
 
+    .searchResultsContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+        margin: 20px, 0;
+    }
 } // query END

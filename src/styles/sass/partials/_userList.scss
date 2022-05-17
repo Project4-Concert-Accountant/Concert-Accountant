@@ -7,14 +7,17 @@
 }
 
 .firebaseUserList {
-    border: 3px solid $strongPurple;
     border-radius: 25px;
     margin-top: 20px;
     color: $backgroundColor;
 
     max-width: 400px;
     min-width: 300px;
+    margin: 20px auto;
 
+    &:nth-child(2n) .userListContainer{
+        background-color: $green;
+    }
 }
 
 .listName {
