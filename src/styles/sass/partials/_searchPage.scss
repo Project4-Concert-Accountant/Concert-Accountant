@@ -1,7 +1,3 @@
-.todo {
-    height: 100vh;
-}
-
 .searchPageListContainer {
     position: relative;
     background-color: blue;
@@ -72,7 +68,7 @@
         font-family: $headerFont;
         text-transform: uppercase;
     }
-
+}
 .searchResultsContainer {
     display: flex;
     flex-direction: column;
@@ -127,4 +123,3 @@
             font-family: $headerFont;
         }
 }
-

@@ -1,6 +1,6 @@
 .footer {
 
-    background-color: $not-so-white;
+    background-color: $green;
     height: auto;
     margin: 20px auto 0px auto;
     text-align: center;
@@ -8,9 +8,11 @@
     position: absolute;
     left: 0;
     right: 0;
+    padding: 10px 0;
 
     a {
         color: $strongPurple;
+        padding: 5px 10px;
     }
 
     .authors {
@@ -19,9 +21,19 @@
         min-width: 300px;
         max-width: 50%;
         margin: 0 auto;
+        
 
         p {
-            margin: 0 auto;
+            margin: 10px auto;
+            background-color: $purple;
+            // border: 1px solid $backgroundColor;
+            // color: $backgroundColor;
+            border-radius: 10px;
+            transition: 0.5s;
+
+            &:hover, &:focus {
+                scale: 1.1;
+            }
         }
 
     }

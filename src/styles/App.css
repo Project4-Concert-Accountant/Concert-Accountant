@@ -541,10 +541,6 @@ h4 {
   color: #AA4465;
 }
 
-.todo {
-  height: 100vh;
-}
-
 .searchPageListContainer {
   position: relative;
   background-color: blue;
@@ -602,29 +598,26 @@ h4 {
 .searchCard * {
   padding: 5px 0;
 }
-
-button {
+.searchCard button {
   margin-top: 5px;
   padding: 5px 10px;
   background-color: #C0C8F0;
   border: 2px solid #212021;
 }
-button:hover, button:focus {
+.searchCard button:hover, .searchCard button:focus {
   background-color: #462255;
   color: #F1F1F1;
 }
-
-a {
+.searchCard a {
   color: #212021;
   text-decoration: underline;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-a:hover, a:focus {
+.searchCard a:hover, .searchCard a:focus {
   scale: 1.1;
 }
-
-h3 {
+.searchCard h3 {
   font-family: "Maitree", serif;
   text-transform: uppercase;
 }
@@ -676,15 +669,6 @@ h3 {
   margin: 0 auto;
 }
 
-.footer {
-  background-color: #F1F1F1;
-  height: auto;
-  margin: 20px auto 0px auto;
-  text-align: center;
-  color: #212021;
-  position: absolute;
-}
-
 .searchPageListContainer {
   position: relative;
   background-color: #212021;
@@ -693,10 +677,31 @@ h3 {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  color: #F1F1F1;
+  border: 10px;
+  background-color: #212021;
+  padding: 10px;
+}
+.searchPageListContainer h4 {
+  text-transform: uppercase;
+  font-family: "Maitree", serif;
+}
+
+.footer {
+  background-color: #DBF0EF;
+  height: auto;
+  margin: 20px auto 0px auto;
+  text-align: center;
+  color: #212021;
+  position: absolute;
+  left: 0;
   right: 0;
+  padding: 10px 0;
 }
 .footer a {
   color: #462255;
+  padding: 5px 10px;
 }
 .footer .authors {
   display: -webkit-box;
@@ -709,12 +714,14 @@ h3 {
   margin: 0 auto;
 }
 .footer .authors p {
-  margin: 0 auto;
+  margin: 10px auto;
+  background-color: #C0C8F0;
+  border-radius: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
-
-.searchPageListContainer h4 {
-  text-transform: uppercase;
-  font-family: "Maitree", serif;
+.footer .authors p:hover, .footer .authors p:focus {
+  scale: 1.1;
 }
 
 @media (min-width: 800px) {
