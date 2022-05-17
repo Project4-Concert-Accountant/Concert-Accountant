@@ -1,0 +1,125 @@
+.brandLogo {
+    padding-bottom: 20px;
+}
+
+.firebaseListContainer {
+    ul {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+
+.firebaseUserList {
+    border-radius: 25px;
+    margin-top: 20px;
+    color: $backgroundColor;
+
+    width: 350px;
+    margin: 20px 10px;
+
+    &:nth-child(2n) .userListContainer{
+        background-color: $green;
+    }
+}
+
+.listName {
+    text-transform: uppercase;
+}
+
+.userListContainer {
+    background-color: $purple;
+    border-radius: 20px;
+    min-height: 100%;
+    padding: 20px 0 10px 0;
+
+    .listInfo {
+        border-bottom: 3px solid $strongPurple;
+        padding-bottom: 10px;
+
+
+    }
+}
+
+.listInfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.subListInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+
+.concertContainer {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    padding: 0px 10px;
+    border-radius: 10px;
+    border: 1px solid $backgroundColor;
+    background-color: $not-so-white;
+    box-shadow: 4px 4px 0px $backgroundColor;
+
+    button {
+        align-self: flex-end;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        background-color: $removeRed;
+        border: none;
+        color: $not-so-white;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.25s;
+
+        &:hover,
+        &:focus {
+            background-color: $removeRed2;
+            color: $not-so-white;
+        }
+    }
+
+}
+
+.mainContentContainer {
+    display: flex;
+
+    .imgContainer {
+        margin: 0;
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            object-fit: cover;
+            box-shadow: 2px 2px 0px $backgroundColor;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .subListInfo {
+        width: 60%;
+        padding-left: 10px;
+    }
+
+}
+
+.addConcertButton {
+    padding: 10px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    background-color: $not-so-white;
+
+    .fa-plus {
+        color: $darkRed;
+    }
+}
