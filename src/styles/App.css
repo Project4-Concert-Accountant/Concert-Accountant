@@ -399,13 +399,16 @@ h4 {
   border: 1px solid #212021;
 }
 
+.brandLogo {
+  padding-bottom: 20px;
+}
+
 .firebaseListContainer ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -414,9 +417,8 @@ h4 {
   border-radius: 25px;
   margin-top: 20px;
   color: #212021;
-  max-width: 400px;
-  min-width: 300px;
-  margin: 20px auto;
+  width: 350px;
+  margin: 20px 10px;
 }
 .firebaseUserList:nth-child(2n) .userListContainer {
   background-color: #DBF0EF;
@@ -630,9 +632,8 @@ h4 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -642,7 +643,7 @@ h4 {
 .searchCard {
   border: 3px solid #E5E6E7;
   border-radius: 10px;
-  margin: 5px 0;
+  margin: 10px;
   width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -651,14 +652,15 @@ h4 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   background-color: #DBF0EF;
   color: #212021;
   padding: 10px 0;
-  min-width: 300px;
-  max-width: 400px;
+  width: 350px;
 }
 .searchCard:nth-child(2n) {
   background-color: #97DAE8;
