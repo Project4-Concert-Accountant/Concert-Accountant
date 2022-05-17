@@ -1,12 +1,12 @@
 const Footer = () => {
     return (
         <div className="footer">
-            <p>Created at<a href="https://junocollege.com/">Juno College of Technology</a>by</p>
+            <p>Created at<a href="https://junocollege.com/" target="_blank" rel="noopener">Juno College of Technology</a>by</p>
             <div className="authors">
-                <p><a href="https://www.clairehousez.com/">Claire Housez</a></p>
-                <p><a href="https://jairocalderon.ca/">Jairo Calderon</a></p>
-                <p><a href="https://www.jcting-web.dev/">Jean Claude Ting</a></p>
-                <p><a href="https://kunaljoshi.ca/">Kunal Joshi</a></p>
+                <p><a href="https://www.clairehousez.com/" target="_blank" rel="noopener">Claire Housez</a></p>
+                <p><a href="https://jairocalderon.ca/" target="_blank" rel="noopener">Jairo Calderon</a></p>
+                <p><a href="https://www.jcting-web.dev/" target="_blank" rel="noopener">Jean Claude Ting</a></p>
+                <p><a href="https://kunaljoshi.ca/" target="_blank" rel="noopener">Kunal Joshi</a></p>
             </div>
         </div>
     )

@@ -16,15 +16,12 @@ const UserConcerts = ({ listName, listBudget, listId, listConcerts }) => {
         concertKeys.push(concert)
 
     }
-    // console.log(concert, listConcerts[concert]);
     // removing the first element in the array since it's an emepty string
     displayConcertsArray.shift();
     concertKeys.shift()
 
     // sortting the array with the highest price to lowest
     // displayConcertsArray.sort(function (a, b) { return b.priceRanges[0].min - a.priceRanges[0].min });
-
-    // console.log(listConcerts, concertKeys);
 
     const removingConcerts = ((listId, concert) => {
 
