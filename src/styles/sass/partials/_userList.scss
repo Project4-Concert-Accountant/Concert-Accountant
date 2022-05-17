@@ -28,22 +28,20 @@
     background-color: $purple;
     border-radius: 20px;
     min-height: 100%;
-    padding: 20px 0 10px 0 ;
+    padding: 20px 0 10px 0;
 
     .listInfo {
         border-bottom: 3px solid $strongPurple;
         padding-bottom: 10px;
 
-        h3 {
-            text-transform: uppercase;
-        }
+
     }
 }
 
 .listInfo {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px ;
+    padding: 0 20px;
 }
 
 .subListInfo {
@@ -53,53 +51,43 @@
     padding: 10px 0;
 }
 
-// .subListInfo {
-//     margin-bottom: 10px;
-//     padding-top: 10px;
-// }
 
 .concertContainer {
-    margin: 20px auto;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    border: 1px solid $backgroundColor;
-    background-color: $not-so-white;
     width: 95%;
-    box-shadow: 4px 4px 0px $backgroundColor;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 10px;
+    margin: 20px auto;
+    padding: 0px 10px;
+    border-radius: 10px;
+    border: 1px solid $backgroundColor;
+    background-color: $not-so-white;
+    box-shadow: 4px 4px 0px $backgroundColor;
 
     button {
-            align-self: flex-end;
-            justify-self: flex-end;
-            padding: 5px 10px;
-            margin-bottom: 5px;
-            background-color: $removeRed;
-            border: none;
-            color: $not-so-white;
-            
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.25s;
+        align-self: flex-end;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        background-color: $removeRed;
+        border: none;
+        color: $not-so-white;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.25s;
 
-            &:hover, &:focus {
-                background-color: $removeRed2;
-                color: $not-so-white;
-            }
+        &:hover,
+        &:focus {
+            background-color: $removeRed2;
+            color: $not-so-white;
         }
+    }
 
 }
 
 .mainContentContainer {
     display: flex;
 
-    .subListInfo{
-        width: 60%;
-    }
-    .imgContainer{
+    .imgContainer {
         margin: 0;
         width: 40%;
         display: flex;
@@ -108,10 +96,17 @@
 
         img {
             object-fit: cover;
-            // border: 1px solid $backgroundColor;
             box-shadow: 2px 2px 0px $backgroundColor;
+            width: 100%;
+            height: auto;
         }
     }
+
+    .subListInfo {
+        width: 60%;
+        padding-left: 10px;
+    }
+
 }
 
 .addConcertButton {
@@ -120,7 +115,7 @@
     min-height: 45px;
     border-radius: 50%;
     background-color: $not-so-white;
-    
+
     .fa-plus {
         color: $darkRed;
     }

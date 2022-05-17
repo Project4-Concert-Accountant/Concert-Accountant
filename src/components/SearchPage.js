@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import EventInfo from "./EventInfo";
-import { useParams } from "react-router-dom";
 import firebase from "../firebase";
+import Footer from "./Footer";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getDatabase, ref, onValue, set } from "firebase/database"
-import UserList from "./UserList";
+
 
 
 const SearchPage = () => {
@@ -23,7 +24,6 @@ const SearchPage = () => {
     const [listBudget, setListBudget] = useState(0)
     const [currentConcerts, setCurrentConcerts] = useState([])
 
-    // const [showList, setShowList] = useState([]);
     const [remainingBudget, setRemainingBudget] = useState(0)
 
     //create state to hold ticket prices from firebase object
@@ -59,8 +59,6 @@ const SearchPage = () => {
         setRemainingBudget(remaining);
     }
 
-
-
     const updatePrice = (currentTicketPrice) => {
         // setting up new ref to push ticketTotal to firebase
         const setRef = ref(database, `/${listID}/currentTotal`);
@@ -73,7 +71,6 @@ const SearchPage = () => {
         budgetDifference(currentTicketPrice);
     }
 
-
     const apiCall = (event) => {
         event.preventDefault()
 
@@ -84,14 +81,11 @@ const SearchPage = () => {
                 format: "json",
                 size: 20,
                 sort: 'date,asc',
-                // the city should be user input
                 city: userSearch,
                 segmentName: 'Music',
-                // keyword: userSearch,
             }
         })
             .then((res) => {
-                // the useful data from api
                 const apiData = res.data._embedded.events
 
                 if (res.statusText === "OK") {
@@ -104,9 +98,9 @@ const SearchPage = () => {
 
                         return (
                             destructuredApiData.push(newObject)
-                        ) // return END
+                        )
 
-                    })// map END
+                    })
 
                     setData(destructuredApiData)
 
@@ -205,6 +199,7 @@ const SearchPage = () => {
                 <button disabled={!userSearch}>Search</button>
             </form>
             {paidArray.length === 0 ? <p>{apiError}</p> : <EventInfo eventArray={paidArray} listKey={listID} updatePrice={updatePrice} />}
+            <Footer />
         </div>
     )
 

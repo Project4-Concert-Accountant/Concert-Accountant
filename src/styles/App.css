@@ -305,11 +305,27 @@ a {
   display: inline-block;
 }
 
+button {
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  margin-top: 5px;
+  padding: 5px 10px;
+  text-transform: capitalize;
+  border-radius: 10px;
+}
+
 h1 {
   font-family: "Maitree", serif;
   font-size: 2rem;
   color: #F1F1F1;
   margin-top: 40px;
+}
+
+h3,
+h4 {
+  font-family: "Maitree", serif;
+  text-transform: uppercase;
 }
 
 .listNameBudget {
@@ -341,7 +357,7 @@ h1 {
 }
 .initialForm [type=text],
 .initialForm button {
-  margin: 0 auto;
+  margin: 5px auto;
   width: 50%;
   min-height: 40px;
   color: #212021;
@@ -350,22 +366,7 @@ h1 {
   margin-top: 5px;
   margin-bottom: 5px;
   border-color: #212021;
-}
-.initialForm [type=text]::-webkit-input-placeholder, .initialForm button::-webkit-input-placeholder {
-  opacity: 0.5;
-}
-.initialForm [type=text]::-moz-placeholder, .initialForm button::-moz-placeholder {
-  opacity: 0.5;
-}
-.initialForm [type=text]:-ms-input-placeholder, .initialForm button:-ms-input-placeholder {
-  opacity: 0.5;
-}
-.initialForm [type=text]::-ms-input-placeholder, .initialForm button::-ms-input-placeholder {
-  opacity: 0.5;
-}
-.initialForm [type=text]::placeholder,
-.initialForm button::placeholder {
-  opacity: 0.5;
+  border-radius: 10px;
 }
 .initialForm [type=text] {
   padding-left: 10px;
@@ -374,14 +375,14 @@ h1 {
   -webkit-box-shadow: 4px 4px 0px #F1F1F1;
           box-shadow: 4px 4px 0px #F1F1F1;
   background-color: #97DAE8;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  cursor: pointer;
 }
 .initialForm button:hover, .initialForm button:focus {
   background-color: #462255;
   color: #F1F1F1;
-  scale: 1.1;
+  -webkit-transform: translateX(4px);
+          transform: translateX(4px);
+  -webkit-transform: translatey(4px);
+          transform: translatey(4px);
 }
 
 .apiSearch input {
@@ -392,30 +393,10 @@ h1 {
   border-radius: 10px;
   padding-left: 10px;
 }
-.apiSearch input::-webkit-input-placeholder {
-  opacity: 0.5;
-}
-.apiSearch input::-moz-placeholder {
-  opacity: 0.5;
-}
-.apiSearch input:-ms-input-placeholder {
-  opacity: 0.5;
-}
-.apiSearch input::-ms-input-placeholder {
-  opacity: 0.5;
-}
-.apiSearch input::placeholder {
-  opacity: 0.5;
-}
 .apiSearch button {
   background-color: #97DAE8;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  cursor: pointer;
   min-height: 30px;
   border: 1px solid #212021;
-  border-radius: 10px;
-  padding: 5px 8px;
 }
 
 .firebaseListContainer ul {
@@ -455,9 +436,6 @@ h1 {
   border-bottom: 3px solid #462255;
   padding-bottom: 10px;
 }
-.userListContainer .listInfo h3 {
-  text-transform: uppercase;
-}
 
 .listInfo {
   display: -webkit-box;
@@ -484,14 +462,7 @@ h1 {
 }
 
 .concertContainer {
-  margin: 20px auto;
-  padding-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #212021;
-  background-color: #F1F1F1;
   width: 95%;
-  -webkit-box-shadow: 4px 4px 0px #212021;
-          box-shadow: 4px 4px 0px #212021;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -502,12 +473,17 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 10px;
+  margin: 20px auto;
+  padding: 0px 10px;
+  border-radius: 10px;
+  border: 1px solid #212021;
+  background-color: #F1F1F1;
+  -webkit-box-shadow: 4px 4px 0px #212021;
+          box-shadow: 4px 4px 0px #212021;
 }
 .concertContainer button {
   -ms-flex-item-align: end;
       align-self: flex-end;
-  justify-self: flex-end;
   padding: 5px 10px;
   margin-bottom: 5px;
   background-color: #B62424;
@@ -528,9 +504,6 @@ h1 {
   display: -ms-flexbox;
   display: flex;
 }
-.mainContentContainer .subListInfo {
-  width: 60%;
-}
 .mainContentContainer .imgContainer {
   margin: 0;
   width: 40%;
@@ -549,6 +522,12 @@ h1 {
      object-fit: cover;
   -webkit-box-shadow: 2px 2px 0px #212021;
           box-shadow: 2px 2px 0px #212021;
+  width: 100%;
+  height: auto;
+}
+.mainContentContainer .subListInfo {
+  width: 60%;
+  padding-left: 10px;
 }
 
 .addConcertButton {
@@ -562,37 +541,83 @@ h1 {
   color: #AA4465;
 }
 
-* {
-  padding: 5px 0;
+.searchPageListContainer {
+  position: relative;
+  background-color: blue;
+}
+.searchPageListContainer .searchPageList {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  color: #F1F1F1;
+  border: 10px;
+  background-color: #212021;
+  padding: 10px;
 }
 
-button {
+.searchResultsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.searchCard {
+  border: 3px solid #97DAE8;
+  border-radius: 10px;
+  margin: 5px 0;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #DBF0EF;
+  color: #212021;
+  padding: 10px 0;
+}
+.searchCard * {
+  padding: 5px 0;
+}
+.searchCard button {
   margin-top: 5px;
   padding: 5px 10px;
   background-color: #C0C8F0;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   border: 2px solid #212021;
-  text-transform: capitalize;
-  border-radius: 10px;
-  cursor: pointer;
 }
-button:hover, button:focus {
+.searchCard button:hover, .searchCard button:focus {
   background-color: #462255;
   color: #F1F1F1;
 }
-
-a {
+.searchCard a {
   color: #212021;
   text-decoration: underline;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-a:hover, a:focus {
+.searchCard a:hover, .searchCard a:focus {
   scale: 1.1;
 }
-
-h3 {
+.searchCard h3 {
   font-family: "Maitree", serif;
   text-transform: uppercase;
 }
@@ -661,6 +686,42 @@ h3 {
 .searchPageListContainer h4 {
   text-transform: uppercase;
   font-family: "Maitree", serif;
+}
+
+.footer {
+  background-color: #DBF0EF;
+  height: auto;
+  margin: 20px auto 0px auto;
+  text-align: center;
+  color: #212021;
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 10px 0;
+}
+.footer a {
+  color: #462255;
+  padding: 5px 10px;
+}
+.footer .authors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-width: 300px;
+  max-width: 50%;
+  margin: 0 auto;
+}
+.footer .authors p {
+  margin: 10px auto;
+  background-color: #C0C8F0;
+  border-radius: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.footer .authors p:hover, .footer .authors p:focus {
+  scale: 1.1;
 }
 
 @media (min-width: 800px) {

@@ -17,7 +17,7 @@
 
     [type=text],
     button {
-        margin: 0 auto;
+        margin: 5px auto;
         width: 50%;
         min-height: 40px;
         color: $backgroundColor;
@@ -26,29 +26,25 @@
         margin-top: 5px;
         margin-bottom: 5px;
         border-color: $backgroundColor;
-
-        &::placeholder{
-            opacity: 0.5;
-        }
+        border-radius: 10px;
     }
 
-    [type=text]{
+    [type=text] {
         padding-left: 10px;
     }
 
     button {
         box-shadow: 4px 4px 0px $not-so-white;
         background-color: $blueSeaColor;
-        transition: 0.5s;
-        cursor: pointer;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: $strongPurple;
             color: $not-so-white;
-            scale: 1.1;
+            transform: translateX(4px);
+            transform: translatey(4px);
         }
     }
-
 }
 
 .apiSearch {
@@ -59,19 +55,11 @@
         min-height: 35px;
         border-radius: 10px;
         padding-left: 10px;
-
-        &::placeholder {
-                opacity: 0.5;
-            }
     }
 
     button {
         background-color: $blueSeaColor;
-        transition: 0.5s;
-        cursor: pointer;
         min-height: 30px;
         border: 1px solid $backgroundColor;
-        border-radius: 10px;
-        padding: 5px 8px;
     }
 }

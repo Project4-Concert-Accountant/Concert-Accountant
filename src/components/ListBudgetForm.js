@@ -3,11 +3,9 @@ import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
 
 const ListBudgetForm = () => {
-    //create state for budget value to limit input to numbers only
     const [budget, setBudget] = useState(0);
     const [name, setName] = useState("");
-    const [concert, setConcert] = useState([""]);
-    const [currentTotal, setCurrentTotal] = useState(0);
+
     const database = getDatabase(firebase);
     const dbRef = ref(database);
     const listName = {
@@ -17,22 +15,14 @@ const ListBudgetForm = () => {
         currentTotal: 0
     };
 
-    // const numberCheck = (event) => {
-    //     //on input change, ; check if input matches pattern attribute (.validity.patternMismatch); if it is valid (false), set val state to input; if it is invalid (true) set target.value to val
-    //     event.target.validity.patternMismatch === false ?  setBudget(event.target.value) : event.target.value = budget;
-
-    // }
-
     return (
         <div className="listNameBudget">
             <h2>Create a Concert List!</h2>
             <form className="initialForm"
-                onSubmit={
-                    (e) => {;
-                        e.preventDefault()
-                        push(dbRef, listName);
-
-                    }
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    push(dbRef, listName);
+                }
                 }>
 
                 <label htmlFor="listName" className="sr-only">List Name</label>
@@ -58,8 +48,6 @@ const ListBudgetForm = () => {
                         setBudget(event.target.value);
                     }}
                 />
-
-
 
                 <button disabled={!name} type="submit" >Create a list!</button>
 
