@@ -1,3 +1,7 @@
+.heightAdjuster {
+    height: 65.5vh;
+}
+
 .searchPageListContainer {
     position: relative;
     background-color: blue;
@@ -69,6 +73,7 @@
         text-transform: uppercase;
     }
 }
+
 .searchResultsContainer {
     display: flex;
     flex-direction: column;
@@ -108,18 +113,18 @@
     background-color: $backgroundColor;
 
     .searchPageList {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            color: $not-so-white;
-            border: 10px;
-            background-color: $backgroundColor;
-            padding: 10px;
-        }
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: $not-so-white;
+        border: 10px;
+        background-color: $backgroundColor;
+        padding: 10px;
+    }
 
-        h4 {
-            text-transform: uppercase;
-            font-family: $headerFont;
-        }
+    h4 {
+        text-transform: uppercase;
+        font-family: $headerFont;
+    }
 }

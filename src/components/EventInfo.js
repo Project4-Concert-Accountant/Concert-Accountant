@@ -31,7 +31,7 @@ const EventInfo = ({ eventArray, listKey, updatePrice }) => {
 
                                 <p>${singleEvent.priceRanges[0].min}</p>
 
-                                <a href={singleEvent.url}>Get Tickets</a>
+                                <a href={singleEvent.url} target="_blank" rel="noopener">Get Tickets</a>
 
                                 <button onClick={() => { addEvent(singleEvent); updatePrice(singleEvent.priceRanges[0].min); alert("Added to your list!"); }}>Add this show</button>
                             </div>

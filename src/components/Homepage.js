@@ -1,7 +1,6 @@
 import React from 'react'
 import UserList from './UserList'
 import ListBudgetForm from './ListBudgetForm'
-import Footer from './Footer'
 
 const Homepage = () => {
   return (
@@ -10,7 +9,6 @@ const Homepage = () => {
       <p>Add a budget. Pick a city. Add your shows!</p>
       <ListBudgetForm />
       <UserList />
-      <Footer />
     </div>
   )
 }
