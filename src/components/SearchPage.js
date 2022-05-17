@@ -1,7 +1,6 @@
 import axios from "axios";
 import EventInfo from "./EventInfo";
 import firebase from "../firebase";
-import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDatabase, ref, onValue, set } from "firebase/database"
@@ -15,8 +14,6 @@ const SearchPage = () => {
     const [userSearch, setUserSearch] = useState("")
     const [data, setData] = useState([]);
     const [paidArray, setPaidArray] = useState([]);
-    // use the free array for broke mode later
-    // const [freeArray, setFreeArray] = useState([]);
 
     // user's current list // this holds the name
     const [userListArray, setUserListArray] = useState([]);
@@ -165,42 +162,63 @@ const SearchPage = () => {
         const copyOfData = [...data];
 
         const primaryPaidArray = [];
-        // const primaryFreeArray = [];
 
         copyOfData.forEach(eachItem => {
             if (eachItem.priceRanges && eachItem.priceRanges[0].min > 0) {
                 primaryPaidArray.push(eachItem);
             }
-            // else {
-            //     primaryFreeArray.push(eachItem);
-            // }
+
         })
 
         setPaidArray(primaryPaidArray);
-        // setFreeArray(primaryFreeArray);
     }, [data])
     //#endregion
 
 
     return (
         <div>
-            <div className="searchPageListContainer">
-                {
-                    userListArray ?
-                        <div className="listInfo searchPageList">
-                            <h4>{userListArray}</h4>
-                            <h4>budget: ${remainingBudget}</h4>
-                        </div> : null
-                }
-            </div>
+            {
+                paidArray.length === 0 ?
+                    <div className="heightAdjuster">
+                        <div className="searchPageListContainer">
+                            {
+                                userListArray ?
+                                    <div className="listInfo searchPageList">
+                                        <h4>{userListArray}</h4>
+                                        <h4>budget: ${remainingBudget}</h4>
+                                    </div> : null
+                            }
+                        </div>
 
-            <form onSubmit={apiCall} className='apiSearch'>
-                <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City" />
-                <button disabled={!userSearch}>Search</button>
-            </form>
-            {paidArray.length === 0 ? <p>{apiError}</p> : <EventInfo eventArray={paidArray} listKey={listID} updatePrice={updatePrice} />}
-            <Footer />
+                        <form onSubmit={apiCall} className='apiSearch'>
+                            <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City" />
+                            <button disabled={!userSearch}>Search</button>
+                        </form>
+                        {paidArray.length === 0 ? <p>{apiError}</p> : <EventInfo eventArray={paidArray} listKey={listID} updatePrice={updatePrice} />}
+                    </div>
+                    :
+                    <>
+                        <div className="searchPageListContainer">
+                            {
+                                userListArray ?
+                                    <div className="listInfo searchPageList">
+                                        <h4>{userListArray}</h4>
+                                        <h4>budget: ${remainingBudget}</h4>
+                                    </div> : null
+                            }
+                        </div>
+
+                        <form onSubmit={apiCall} className='apiSearch'>
+                            <input onChange={handleUserSearch} type="text" id="search" name="search" placeholder="Enter a City" />
+                            <button disabled={!userSearch}>Search</button>
+                        </form>
+                        {paidArray.length === 0 ? <p>{apiError}</p> : <EventInfo eventArray={paidArray} listKey={listID} updatePrice={updatePrice} />}
+
+
+                    </>
+            }
         </div>
+
     )
 
 }

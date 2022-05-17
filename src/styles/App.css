@@ -379,10 +379,6 @@ h4 {
 .initialForm button:hover, .initialForm button:focus {
   background-color: #462255;
   color: #F1F1F1;
-  -webkit-transform: translateX(4px);
-          transform: translateX(4px);
-  -webkit-transform: translatey(4px);
-          transform: translatey(4px);
 }
 
 .apiSearch input {
@@ -543,6 +539,10 @@ h4 {
   color: #AA4465;
 }
 
+.heightAdjuster {
+  height: 65.5vh;
+}
+
 .searchPageListContainer {
   position: relative;
   background-color: blue;
@@ -691,14 +691,12 @@ h4 {
 }
 
 .footer {
+  width: 100%;
   background-color: #DBF0EF;
   height: auto;
   margin: 20px auto 0px auto;
   text-align: center;
   color: #212021;
-  position: absolute;
-  left: 0;
-  right: 0;
   padding: 10px 0;
 }
 .footer a {
