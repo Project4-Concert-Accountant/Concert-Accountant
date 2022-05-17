@@ -67,9 +67,64 @@
             scale: 1.1;
         }
     }
+
+    h3 {
+        font-family: $headerFont;
+        text-transform: uppercase;
+    }
+
+.searchResultsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
+
+.searchCard {
+    border: 3px solid $inputFiledColor;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $green;
+    color: $backgroundColor;
+    padding: 10px 0;
+    min-width: 300px;
+    max-width: 400px;
+
+    &:nth-child(2n) {
+        background-color: $blueSeaColor;
+    }
+}
+
 
 .imgContainer {
     max-width: 400px;
     margin: 0 auto;
 }
+
+
+.searchPageListContainer {
+    position: relative;
+    background-color: $backgroundColor;
+
+    .searchPageList {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: $not-so-white;
+            border: 10px;
+            background-color: $backgroundColor;
+            padding: 10px;
+        }
+
+        h4 {
+            text-transform: uppercase;
+            font-family: $headerFont;
+        }
+}
+

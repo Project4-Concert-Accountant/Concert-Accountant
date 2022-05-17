@@ -318,7 +318,7 @@ button {
 h1 {
   font-family: "Maitree", serif;
   font-size: 2rem;
-  color: #DBF0EF;
+  color: #F1F1F1;
   margin-top: 40px;
 }
 
@@ -330,6 +330,16 @@ h4 {
 
 .listNameBudget {
   margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .initialForm {
@@ -342,6 +352,8 @@ h4 {
           flex-direction: column;
   margin-top: 15px;
   padding: 5px;
+  width: 100%;
+  max-width: 700px;
 }
 .initialForm [type=text],
 .initialForm button {
@@ -349,7 +361,10 @@ h4 {
   width: 50%;
   min-height: 40px;
   color: #212021;
-  background-color: #DBF0EF;
+  background-color: #E5E6E7;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-color: #212021;
   border-radius: 10px;
 }
@@ -372,7 +387,7 @@ h4 {
 
 .apiSearch input {
   color: #212021;
-  background-color: #DBF0EF;
+  background-color: #E5E6E7;
   border: 1px solid #212021;
   min-height: 35px;
   border-radius: 10px;
@@ -384,11 +399,27 @@ h4 {
   border: 1px solid #212021;
 }
 
+.firebaseListContainer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 .firebaseUserList {
-  border: 3px solid #462255;
   border-radius: 25px;
   margin-top: 20px;
   color: #212021;
+  max-width: 400px;
+  min-width: 300px;
+  margin: 20px auto;
+}
+.firebaseUserList:nth-child(2n) .userListContainer {
+  background-color: #DBF0EF;
 }
 
 .listName {
@@ -571,24 +602,73 @@ h4 {
 .searchCard * {
   padding: 5px 0;
 }
-.searchCard button {
+
+button {
   margin-top: 5px;
   padding: 5px 10px;
   background-color: #C0C8F0;
   border: 2px solid #212021;
 }
-.searchCard button:hover, .searchCard button:focus {
+button:hover, button:focus {
   background-color: #462255;
   color: #F1F1F1;
 }
-.searchCard a {
+
+a {
   color: #212021;
   text-decoration: underline;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-.searchCard a:hover, .searchCard a:focus {
+a:hover, a:focus {
   scale: 1.1;
+}
+
+h3 {
+  font-family: "Maitree", serif;
+  text-transform: uppercase;
+}
+
+.searchResultsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+}
+
+.searchCard {
+  border: 3px solid #E5E6E7;
+  border-radius: 10px;
+  margin: 5px 0;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #DBF0EF;
+  color: #212021;
+  padding: 10px 0;
+  min-width: 300px;
+  max-width: 400px;
+}
+.searchCard:nth-child(2n) {
+  background-color: #97DAE8;
 }
 
 .imgContainer {
@@ -603,6 +683,15 @@ h4 {
   text-align: center;
   color: #212021;
   position: absolute;
+}
+
+.searchPageListContainer {
+  position: relative;
+  background-color: #212021;
+}
+.searchPageListContainer .searchPageList {
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
 }
@@ -621,4 +710,30 @@ h4 {
 }
 .footer .authors p {
   margin: 0 auto;
+}
+
+.searchPageListContainer h4 {
+  text-transform: uppercase;
+  font-family: "Maitree", serif;
+}
+
+@media (min-width: 800px) {
+  .wrapper {
+    max-width: 1400px;
+  }
+
+  .searchResultsContainer {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    margin: 20px, 0;
+  }
 }

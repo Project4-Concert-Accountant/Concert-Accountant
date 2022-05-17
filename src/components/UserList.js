@@ -25,7 +25,7 @@ const UserList = () => {
     }, [])
 
     return (
-        <>
+        <div className="firebaseListContainer">
             <ul>
                 {
                     userListArray.map((list) => {
@@ -41,7 +41,7 @@ const UserList = () => {
                     })
                 }
             </ul>
-        </>
+        </div>
     )
 }
 
