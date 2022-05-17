@@ -1,14 +1,16 @@
 .footer {
-
+    width: 100%;
     background-color: $green;
     height: auto;
     margin: 20px auto 0px auto;
     text-align: center;
     color: $backgroundColor;
-    position: absolute;
-    left: 0;
-    right: 0;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
     padding: 10px 0;
+
 
     a {
         color: $strongPurple;
@@ -21,17 +23,15 @@
         min-width: 300px;
         max-width: 50%;
         margin: 0 auto;
-        
 
         p {
             margin: 10px auto;
             background-color: $purple;
-            // border: 1px solid $backgroundColor;
-            // color: $backgroundColor;
             border-radius: 10px;
             transition: 0.5s;
 
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 scale: 1.1;
             }
         }
