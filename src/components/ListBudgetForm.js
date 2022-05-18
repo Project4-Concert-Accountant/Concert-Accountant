@@ -3,7 +3,7 @@ import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
 
 const ListBudgetForm = () => {
-    const [budget, setBudget] = useState(0);
+    const [budget, setBudget] = useState("");
     const [name, setName] = useState("");
 
     const database = getDatabase(firebase);

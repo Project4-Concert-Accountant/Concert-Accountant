@@ -31,14 +31,31 @@
     background-color: $purple;
     border-radius: 20px;
     min-height: 100%;
-    padding: 20px 0 10px 0;
+    padding: 40px 0 10px 0;
+    position: relative;
 
     .listInfo {
         border-bottom: 3px solid $strongPurple;
         padding-bottom: 10px;
-
-
     }
+
+    .removeList {
+        position: absolute;
+        top:0;
+        right: 5px;
+        font-size: 0.8rem;
+        border: none;
+        color: $not-so-white;
+        background-color: $removeRed;
+        transition: 0.5s;
+
+        &:hover,
+        &:focus {
+            background-color: $removeRed2;
+            color: $not-so-white;
+        }
+    }
+
 }
 
 .listInfo {

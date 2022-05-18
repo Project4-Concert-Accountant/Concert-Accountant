@@ -428,11 +428,27 @@ h4 {
   background-color: #C0C8F0;
   border-radius: 20px;
   min-height: 100%;
-  padding: 20px 0 10px 0;
+  padding: 40px 0 10px 0;
+  position: relative;
 }
 .userListContainer .listInfo {
   border-bottom: 3px solid #462255;
   padding-bottom: 10px;
+}
+.userListContainer .removeList {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 0.8rem;
+  border: none;
+  color: #F1F1F1;
+  background-color: #B62424;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.userListContainer .removeList:hover, .userListContainer .removeList:focus {
+  background-color: #e90d0d;
+  color: #F1F1F1;
 }
 
 .listInfo {
