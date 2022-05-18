@@ -31,8 +31,15 @@ const UserConcerts = ({ listName, listBudget, listId, listConcerts }) => {
         remove(removeRef)
     })
 
+    const removeList = () => {
+        const database = getDatabase(firebase);
+        const removeListRef = ref(database, `/${listId}`)
+        remove(removeListRef);
+    }
+
     return (
         <div className="userListContainer">
+            <button onClick={() => {removeList()}} className="removeList">X</button>
             <div className="listInfo">
                 <h3>{listName}</h3>
                 <h3>${listBudget}</h3>
